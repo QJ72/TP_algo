@@ -128,6 +128,7 @@ void printConsoleGraph(Graph graph){
     for (i=0;i<graph.numberVertices;i++){
         printf("%d ", graph.parents[i]);
     }
+    printf("\n");
     
     return;
 }
@@ -247,8 +248,19 @@ void drawGraph(Graph graph, char* filename, int type, int directed){
 void graphDFS(Graph graph, int vertex) {
     Stack* s = createStack();
     //le sommet d'origine est son propre parent
+    graph.parents[vertex] = vertex;
     push(s, vertex);
-    while
+    while (isStackEmpty(*s) == 0){
+        int vertex_current = pop(s);
+        List list_current = graph.array[vertex_current];
+        while (list_current != NULL){
+            if (graph.parents[list_current->value] == -1){
+                graph.parents[list_current->value] = vertex_current;
+                push(s, list_current->value);
+            }
+            list_current = list_current->nextCell;
+        }
+    }
 
 
     return;
@@ -267,6 +279,21 @@ void graphDFS(Graph graph, int vertex) {
  * must be initialized before calling the function.
  */
 void graphBFS(Graph graph, int vertex){
+    Queue* q = createQueue();
+    //le sommet d'origine est son propre parent
+    graph.parents[vertex] = vertex;
+    enqueue(q, vertex);
+    while (isQueueEmpty(*q) == 0){
+        int vertex_current = dequeue(q);
+        List list_current = graph.array[vertex_current];
+        while (list_current != NULL){
+            if (graph.parents[list_current->value] == -1){
+                graph.parents[list_current->value] = vertex_current;
+                enqueue(q, list_current->value);
+            }
+            list_current = list_current->nextCell;
+        }
+    }
     return;
 }
 
@@ -281,7 +308,15 @@ void graphBFS(Graph graph, int vertex){
  * Note that the array parents is initialized in the function.
  */
 int numberOfComponents(Graph graph){
-    return -1;
+    int i;
+    int c = 0;
+    for (i=0;i<graph.numberVertices;i++){
+        if (graph.parents[i] == -1){
+            c += 1;
+            graphBFS(graph, i);
+        }
+    }
+    return c;
 
 }
 

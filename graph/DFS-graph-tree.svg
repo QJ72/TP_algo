@@ -61,11 +61,11 @@
 <circle cx="521" cy="183" r="3" fill="blue" />
 <circle cx="660" cy="393" r="3" fill="blue" />
 <line x1="658" y1="367" x2="660" y2="393"
-      style="stroke: darkgray;"   />
+      style="stroke: red;"   />
 <line x1="643" y1="384" x2="660" y2="393"
-      style="stroke: darkgray;"   />
+      style="stroke: red;"   />
 <line x1="687" y1="316" x2="660" y2="393"
-      style="stroke: darkgray;"   />
+      style="stroke: red;"   />
 <circle cx="592" cy="568" r="3" fill="blue" />
 <line x1="592" y1="568" x2="556" y2="614"
       style="stroke: darkgray;"   />
@@ -226,7 +226,7 @@
       style="stroke: darkgray;"   />
 <circle cx="684" cy="255" r="3" fill="blue" />
 <line x1="684" y1="255" x2="687" y2="316"
-      style="stroke: darkgray;"   />
+      style="stroke: red;"   />
 <circle cx="199" cy="265" r="3" fill="blue" />
 <line x1="199" y1="265" x2="193" y2="319"
       style="stroke: darkgray;"   />
