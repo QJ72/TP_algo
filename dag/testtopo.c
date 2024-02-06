@@ -12,10 +12,10 @@ int main() {
     Graph graph = createGraph(1,n,sigma);
 
     // Print the graph to the console
-    //printConsoleGraph(graph);
+    printConsoleGraph(graph);
 
     // Draw the graph to a file
-    //drawGraph(graph, "graph.svg",0,1);
+    drawGraph(graph, "graph.svg",0,1);
 
     //topological ordering
     /*

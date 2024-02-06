@@ -6,4 +6,5 @@
 #TP queue : terminé
 #TP pile : terminé
 #TP table de hachable: terminé
-#TP graphe : en cours
+#TP graphe : terminé
+#TP dag : en cours
