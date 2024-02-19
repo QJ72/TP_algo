@@ -9,112 +9,126 @@
 <path d="M0,0 L0,6 L9,3 z"/>
 </marker>
 </defs>
-<circle cx="660" cy="393" r="3" fill="blue" />
-<circle cx="592" cy="568" r="3" fill="blue" />
-<circle cx="429" cy="460" r="3" fill="blue" />
-<circle cx="102" cy="522" r="3" fill="blue" />
-<circle cx="469" cy="469" r="3" fill="blue" />
-<circle cx="288" cy="697" r="3" fill="blue" />
-<circle cx="421" cy="259" r="3" fill="blue" />
-<circle cx="254" cy="110" r="3" fill="blue" />
-<circle cx="142" cy="230" r="3" fill="blue" />
-<circle cx="411" cy="670" r="3" fill="blue" />
-<circle cx="198" cy="604" r="3" fill="blue" />
-<circle cx="556" cy="614" r="3" fill="blue" />
-<circle cx="320" cy="401" r="3" fill="blue" />
-<circle cx="150" cy="272" r="3" fill="blue" />
-<circle cx="162" cy="452" r="3" fill="blue" />
-<circle cx="563" cy="123" r="3" fill="blue" />
-<circle cx="146" cy="455" r="3" fill="blue" />
-<circle cx="591" cy="475" r="3" fill="blue" />
-<circle cx="216" cy="594" r="3" fill="blue" />
-<circle cx="298" cy="586" r="3" fill="blue" />
-<circle cx="364" cy="486" r="3" fill="blue" />
-<circle cx="583" cy="685" r="3" fill="blue" />
-<circle cx="646" cy="138" r="3" fill="blue" />
-<circle cx="696" cy="688" r="3" fill="blue" />
-<circle cx="269" cy="407" r="3" fill="blue" />
-<circle cx="658" cy="367" r="3" fill="blue" />
-<circle cx="311" cy="515" r="3" fill="blue" />
-<circle cx="281" cy="531" r="3" fill="blue" />
-<circle cx="216" cy="332" r="3" fill="blue" />
-<circle cx="104" cy="279" r="3" fill="blue" />
-<circle cx="684" cy="567" r="3" fill="blue" />
-<circle cx="303" cy="130" r="3" fill="blue" />
-<circle cx="323" cy="194" r="3" fill="blue" />
-<circle cx="506" cy="439" r="3" fill="blue" />
-<circle cx="689" cy="104" r="3" fill="blue" />
-<circle cx="325" cy="353" r="3" fill="blue" />
-<circle cx="491" cy="209" r="3" fill="blue" />
-<circle cx="339" cy="437" r="3" fill="blue" />
-<circle cx="247" cy="335" r="3" fill="blue" />
-<circle cx="425" cy="416" r="3" fill="blue" />
-<circle cx="643" cy="384" r="3" fill="blue" />
-<circle cx="684" cy="255" r="3" fill="blue" />
-<circle cx="199" cy="265" r="3" fill="blue" />
-<circle cx="687" cy="316" r="3" fill="blue" />
-<circle cx="497" cy="691" r="3" fill="blue" />
-<circle cx="495" cy="482" r="3" fill="blue" />
-<circle cx="559" cy="699" r="3" fill="blue" />
-<circle cx="512" cy="182" r="3" fill="blue" />
-<circle cx="193" cy="319" r="3" fill="blue" />
-<circle cx="521" cy="183" r="3" fill="blue" />
-<circle cx="660" cy="393" r="3" fill="blue" />
-<line x1="658" y1="367" x2="660" y2="393"
+<circle cx="528" cy="613" r="3" fill="blue" />
+<circle cx="577" cy="304" r="3" fill="blue" />
+<circle cx="672" cy="387" r="3" fill="blue" />
+<circle cx="216" cy="562" r="3" fill="blue" />
+<circle cx="447" cy="161" r="3" fill="blue" />
+<circle cx="502" cy="554" r="3" fill="blue" />
+<circle cx="227" cy="615" r="3" fill="blue" />
+<circle cx="657" cy="285" r="3" fill="blue" />
+<circle cx="622" cy="589" r="3" fill="blue" />
+<circle cx="428" cy="543" r="3" fill="blue" />
+<circle cx="534" cy="279" r="3" fill="blue" />
+<circle cx="566" cy="458" r="3" fill="blue" />
+<circle cx="627" cy="656" r="3" fill="blue" />
+<circle cx="524" cy="650" r="3" fill="blue" />
+<circle cx="636" cy="494" r="3" fill="blue" />
+<circle cx="272" cy="464" r="3" fill="blue" />
+<circle cx="407" cy="149" r="3" fill="blue" />
+<circle cx="668" cy="380" r="3" fill="blue" />
+<circle cx="436" cy="185" r="3" fill="blue" />
+<circle cx="243" cy="184" r="3" fill="blue" />
+<circle cx="246" cy="645" r="3" fill="blue" />
+<circle cx="639" cy="374" r="3" fill="blue" />
+<circle cx="560" cy="596" r="3" fill="blue" />
+<circle cx="559" cy="483" r="3" fill="blue" />
+<circle cx="486" cy="287" r="3" fill="blue" />
+<circle cx="326" cy="321" r="3" fill="blue" />
+<circle cx="467" cy="192" r="3" fill="blue" />
+<circle cx="679" cy="394" r="3" fill="blue" />
+<circle cx="149" cy="503" r="3" fill="blue" />
+<circle cx="344" cy="685" r="3" fill="blue" />
+<circle cx="298" cy="517" r="3" fill="blue" />
+<circle cx="449" cy="606" r="3" fill="blue" />
+<circle cx="566" cy="418" r="3" fill="blue" />
+<circle cx="287" cy="303" r="3" fill="blue" />
+<circle cx="503" cy="430" r="3" fill="blue" />
+<circle cx="388" cy="650" r="3" fill="blue" />
+<circle cx="375" cy="327" r="3" fill="blue" />
+<circle cx="325" cy="236" r="3" fill="blue" />
+<circle cx="224" cy="185" r="3" fill="blue" />
+<circle cx="619" cy="610" r="3" fill="blue" />
+<circle cx="373" cy="246" r="3" fill="blue" />
+<circle cx="232" cy="140" r="3" fill="blue" />
+<circle cx="339" cy="211" r="3" fill="blue" />
+<circle cx="435" cy="388" r="3" fill="blue" />
+<circle cx="615" cy="680" r="3" fill="blue" />
+<circle cx="373" cy="214" r="3" fill="blue" />
+<circle cx="497" cy="123" r="3" fill="blue" />
+<circle cx="120" cy="364" r="3" fill="blue" />
+<circle cx="441" cy="308" r="3" fill="blue" />
+<circle cx="568" cy="245" r="3" fill="blue" />
+<circle cx="528" cy="613" r="3" fill="blue" />
+<line x1="502" y1="554" x2="528" y2="613"
       style="stroke: red;"   />
-<line x1="643" y1="384" x2="660" y2="393"
+<line x1="528" y1="613" x2="524" y2="650"
       style="stroke: red;"   />
-<line x1="687" y1="316" x2="660" y2="393"
+<line x1="560" y1="596" x2="528" y2="613"
       style="stroke: red;"   />
-<circle cx="592" cy="568" r="3" fill="blue" />
-<circle cx="429" cy="460" r="3" fill="blue" />
-<circle cx="102" cy="522" r="3" fill="blue" />
-<circle cx="469" cy="469" r="3" fill="blue" />
-<circle cx="288" cy="697" r="3" fill="blue" />
-<circle cx="421" cy="259" r="3" fill="blue" />
-<circle cx="254" cy="110" r="3" fill="blue" />
-<circle cx="142" cy="230" r="3" fill="blue" />
-<circle cx="411" cy="670" r="3" fill="blue" />
-<circle cx="198" cy="604" r="3" fill="blue" />
-<circle cx="556" cy="614" r="3" fill="blue" />
-<circle cx="320" cy="401" r="3" fill="blue" />
-<circle cx="150" cy="272" r="3" fill="blue" />
-<circle cx="162" cy="452" r="3" fill="blue" />
-<circle cx="563" cy="123" r="3" fill="blue" />
-<circle cx="146" cy="455" r="3" fill="blue" />
-<circle cx="591" cy="475" r="3" fill="blue" />
-<circle cx="216" cy="594" r="3" fill="blue" />
-<circle cx="298" cy="586" r="3" fill="blue" />
-<circle cx="364" cy="486" r="3" fill="blue" />
-<circle cx="583" cy="685" r="3" fill="blue" />
-<circle cx="646" cy="138" r="3" fill="blue" />
-<circle cx="696" cy="688" r="3" fill="blue" />
-<circle cx="269" cy="407" r="3" fill="blue" />
-<circle cx="658" cy="367" r="3" fill="blue" />
-<circle cx="311" cy="515" r="3" fill="blue" />
-<circle cx="281" cy="531" r="3" fill="blue" />
-<circle cx="216" cy="332" r="3" fill="blue" />
-<circle cx="104" cy="279" r="3" fill="blue" />
-<circle cx="684" cy="567" r="3" fill="blue" />
-<circle cx="303" cy="130" r="3" fill="blue" />
-<circle cx="323" cy="194" r="3" fill="blue" />
-<circle cx="506" cy="439" r="3" fill="blue" />
-<circle cx="689" cy="104" r="3" fill="blue" />
-<circle cx="325" cy="353" r="3" fill="blue" />
-<circle cx="491" cy="209" r="3" fill="blue" />
-<circle cx="339" cy="437" r="3" fill="blue" />
-<circle cx="247" cy="335" r="3" fill="blue" />
-<circle cx="425" cy="416" r="3" fill="blue" />
-<circle cx="643" cy="384" r="3" fill="blue" />
-<circle cx="684" cy="255" r="3" fill="blue" />
-<line x1="684" y1="255" x2="687" y2="316"
+<line x1="449" y1="606" x2="528" y2="613"
       style="stroke: red;"   />
-<circle cx="199" cy="265" r="3" fill="blue" />
-<circle cx="687" cy="316" r="3" fill="blue" />
-<circle cx="497" cy="691" r="3" fill="blue" />
-<circle cx="495" cy="482" r="3" fill="blue" />
-<circle cx="559" cy="699" r="3" fill="blue" />
-<circle cx="512" cy="182" r="3" fill="blue" />
-<circle cx="193" cy="319" r="3" fill="blue" />
-<circle cx="521" cy="183" r="3" fill="blue" />
+<circle cx="577" cy="304" r="3" fill="blue" />
+<circle cx="672" cy="387" r="3" fill="blue" />
+<circle cx="216" cy="562" r="3" fill="blue" />
+<circle cx="447" cy="161" r="3" fill="blue" />
+<circle cx="502" cy="554" r="3" fill="blue" />
+<circle cx="227" cy="615" r="3" fill="blue" />
+<circle cx="657" cy="285" r="3" fill="blue" />
+<circle cx="622" cy="589" r="3" fill="blue" />
+<line x1="622" y1="589" x2="560" y2="596"
+      style="stroke: red;"   />
+<circle cx="428" cy="543" r="3" fill="blue" />
+<line x1="428" y1="543" x2="449" y2="606"
+      style="stroke: red;"   />
+<circle cx="534" cy="279" r="3" fill="blue" />
+<circle cx="566" cy="458" r="3" fill="blue" />
+<circle cx="627" cy="656" r="3" fill="blue" />
+<line x1="560" y1="596" x2="627" y2="656"
+      style="stroke: red;"   />
+<circle cx="524" cy="650" r="3" fill="blue" />
+<circle cx="636" cy="494" r="3" fill="blue" />
+<circle cx="272" cy="464" r="3" fill="blue" />
+<circle cx="407" cy="149" r="3" fill="blue" />
+<circle cx="668" cy="380" r="3" fill="blue" />
+<circle cx="436" cy="185" r="3" fill="blue" />
+<circle cx="243" cy="184" r="3" fill="blue" />
+<circle cx="246" cy="645" r="3" fill="blue" />
+<circle cx="639" cy="374" r="3" fill="blue" />
+<circle cx="560" cy="596" r="3" fill="blue" />
+<line x1="560" y1="596" x2="619" y2="610"
+      style="stroke: red;"   />
+<circle cx="559" cy="483" r="3" fill="blue" />
+<circle cx="486" cy="287" r="3" fill="blue" />
+<circle cx="326" cy="321" r="3" fill="blue" />
+<circle cx="467" cy="192" r="3" fill="blue" />
+<circle cx="679" cy="394" r="3" fill="blue" />
+<circle cx="149" cy="503" r="3" fill="blue" />
+<circle cx="344" cy="685" r="3" fill="blue" />
+<line x1="388" y1="650" x2="344" y2="685"
+      style="stroke: red;"   />
+<circle cx="298" cy="517" r="3" fill="blue" />
+<circle cx="449" cy="606" r="3" fill="blue" />
+<line x1="449" y1="606" x2="388" y2="650"
+      style="stroke: red;"   />
+<circle cx="566" cy="418" r="3" fill="blue" />
+<circle cx="287" cy="303" r="3" fill="blue" />
+<circle cx="503" cy="430" r="3" fill="blue" />
+<circle cx="388" cy="650" r="3" fill="blue" />
+<circle cx="375" cy="327" r="3" fill="blue" />
+<circle cx="325" cy="236" r="3" fill="blue" />
+<circle cx="224" cy="185" r="3" fill="blue" />
+<circle cx="619" cy="610" r="3" fill="blue" />
+<line x1="619" y1="610" x2="615" y2="680"
+      style="stroke: red;"   />
+<circle cx="373" cy="246" r="3" fill="blue" />
+<circle cx="232" cy="140" r="3" fill="blue" />
+<circle cx="339" cy="211" r="3" fill="blue" />
+<circle cx="435" cy="388" r="3" fill="blue" />
+<circle cx="615" cy="680" r="3" fill="blue" />
+<circle cx="373" cy="214" r="3" fill="blue" />
+<circle cx="497" cy="123" r="3" fill="blue" />
+<circle cx="120" cy="364" r="3" fill="blue" />
+<circle cx="441" cy="308" r="3" fill="blue" />
+<circle cx="568" cy="245" r="3" fill="blue" />
 </svg>

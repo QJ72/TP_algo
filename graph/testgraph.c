@@ -18,7 +18,7 @@ int main() {
 
     // Perform a depth-first search
     //initialization of the array parents
-    
+    /*
     for(int i = 0; i < n; i++ )
         graph.parents[i]=-1;
     graphDFS(graph, 0);
@@ -27,24 +27,25 @@ int main() {
     // Draw the graph and the covering tree to files
     drawGraph(graph, "DFS-graph-tree.svg",2,0);
     drawGraph(graph, "DFS-tree.svg",1,0);
-    
+    */
 
 
     // Perform a breadth-first search
-    
+    /*
     graphBFS(graph, 0);
     printConsoleGraph(graph);
     // Draw the graph and the covering tree to files
     drawGraph(graph, "BFS-graph-tree.svg",2,0);
     drawGraph(graph, "BFS-tree.svg",1,0);
-    
+    */
 
     // compute the number of connected components.
-    
-    printf("Number of components : %d \n", numberOfComponents(graph));
+    /*
+    printf("Number of components : %d", numberOfComponents(graph));
     printConsoleGraph(graph);
     drawGraph(graph, "components-graph-tree.svg",2,0);
     drawGraph(graph, "components-tree.svg",1,0);
+    */
 
     return 0;
 }

@@ -8,7 +8,7 @@ OBJ= $(SRC:.c=.o)
 all: $(EXEC)
 
 $(EXEC): $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS)
+	$(CC) -g -o $@ $^ $(CFLAGS)
 
 
 .../queue/queue.o: ../queue/queue.h
@@ -18,7 +18,7 @@ $(EXEC): $(OBJ)
 topo.o: topo.h
 
 %.o: %.c
-	$(CC) -o $@ -c $< $(CFLAGS)
+	$(CC) -g -o $@ -c $< $(CFLAGS)
 
 .PHONY: clean
 

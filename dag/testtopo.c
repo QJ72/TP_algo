@@ -18,11 +18,11 @@ int main() {
     drawGraph(graph, "graph.svg",0,1);
 
     //topological ordering
-    /*
+    
     topologicalSort(graph);
+    
     printConsoleGraph(graph);
-    drawGraph(graph, "topo.svg",1);
-    */
+    drawGraph(graph, "topo.svg",0,1);
 
     //topological ordering+earlyest dates
     /*

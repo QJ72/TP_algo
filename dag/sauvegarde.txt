@@ -1,0 +1,38 @@
+void topologicalSort(Graph graph){
+    int i;
+    int j; 
+    int c = 0;
+    if (graph.topological_ordering != NULL){
+        return;
+    }
+    graph.topological_ordering = (int*)malloc(graph.numberVertices*sizeof(int));
+    for (i=0;i<graph.numberVertices;i++){
+        graphDFS(graph,i);
+        if (graph.parents[i] == -1){
+            Stack* s = createStack();
+            push(s,i);
+            while (isStackEmpty(*s) == 0){
+                int vertex_current = pop(s);
+                int fin = 0;
+                for (j=0;j<i;j++){
+                    if (graph.topological_ordering[j] == vertex_current){
+                        graph.topological_ordering[j] = graph.topological_ordering[c]; //On swap avec le prédécesseur
+                        graph.topological_ordering[c-1] = vertex_current;
+                        fin = 1;
+                    }
+                }
+                if (fin == 0){ 
+                    graph.topological_ordering[c] = vertex_current;
+                    c += 1;
+                }
+                List list_current = graph.array[vertex_current];
+                while (list_current != NULL){
+                    push(s, list_current->value);
+                    list_current = list_current->nextCell;
+                }
+            }
+        }
+    }
+
+    return;
+}

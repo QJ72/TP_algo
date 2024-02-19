@@ -17,29 +17,30 @@
  * @param graph The graph to be sorted.
  */
 void topologicalSort(Graph graph){
-    int i = 0;
+    int i;
+    int j; 
     int c = 0;
-    if (graph.topological_ordering != NULL){
-        return;
-    }
-    graph.topological_ordering = (int*)malloc(graph.numberVertices*sizeof(int));
+    Stack* s = createStack();
     for (i=0;i<graph.numberVertices;i++){
-        if (graph.parents[i] == i){
-            Stack* s = createQueue();
+        if (graph.parents[i] == -1){
+            graphDFS(graph,i);
+        }
+    }
+    for (i=0;i<graph.numberVertices;i++){
+        if (i == graph.parents[i]){
             push(s,i);
-            while (isStackEmpty(*s) == 0){
-                int vertex_current = pop(s);
-                graph.topological_ordering[c];
-                c += 1;
-                List list_current = graph.array[vertex_current];
-                while (list_current != NULL){
-                    push(s, list_current->value);
-                    list_current = list_current->nextCell;
+        }
+        while (isStackEmpty(*s) == 0){
+            int temp = pop(s);
+            graph.topological_ordering[c] = temp;
+            c += 1;
+            for (j=0;j<graph.numberVertices;j++){
+                if ((graph.parents[j] == temp)&&(j != temp)){
+                    push(s,j);
                 }
             }
         }
     }
-
     return;
 }
 

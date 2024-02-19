@@ -82,6 +82,7 @@ Graph createGraph(int directed, int numVertices, double sigma) {
     graph.parents = NULL;
     graph.parents = (int*)malloc(graph.numberVertices*sizeof(int));
     graph.topological_ordering = NULL;
+    graph.topological_ordering = (int*)malloc(graph.numberVertices*sizeof(int));
     graph.earliest_start = NULL;
     graph.latest_start = NULL;
 
@@ -89,6 +90,7 @@ Graph createGraph(int directed, int numVertices, double sigma) {
         graph.xCoordinates[i] = (double)rand()/RAND_MAX;
         graph.yCoordinates[i] = (double)rand()/RAND_MAX;
         graph.parents[i] = -1;
+        graph.topological_ordering[i] = -1; //Pas obligatoire mais permet plus de visibilité
     }
 
     for(i=0; i <graph.numberVertices;i++){
@@ -127,6 +129,12 @@ void printConsoleGraph(Graph graph){
     printf("parents : ");
     for (i=0;i<graph.numberVertices;i++){
         printf("%d ", graph.parents[i]);
+    }
+    printf("\n");
+
+    printf("topological order :");
+    for (i=0;i<graph.numberVertices;i++){
+        printf("%d ", graph.topological_ordering[i]);
     }
     printf("\n");
     
@@ -313,7 +321,7 @@ int numberOfComponents(Graph graph){
     for (i=0;i<graph.numberVertices;i++){
         if (graph.parents[i] == -1){
             c += 1;
-            graphBFS(graph, i);
+            graphDFS(graph, i);
         }
     }
     return c;
