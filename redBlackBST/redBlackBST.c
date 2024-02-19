@@ -34,6 +34,13 @@ RedBlackBST createEmptyRedBlackBST(){
  * @param tree Pointer to the root of the tree.
  */
 void freeRedBlackBST(RedBlackBST tree){
+    if (tree == NULL){
+        return;
+    }
+    freeRedBlackBST(tree->leftBST);
+    freeRedBlackBST(tree->rightBST);
+    freeRedBlackBST(tree->father);
+    free(tree);
     return ;
 }
 

@@ -83,8 +83,8 @@ Graph createGraph(int directed, int numVertices, double sigma) {
     graph.parents = (int*)malloc(graph.numberVertices*sizeof(int));
     graph.topological_ordering = NULL;
     graph.topological_ordering = (int*)malloc(graph.numberVertices*sizeof(int));
-    graph.earliest_start = NULL;
-    graph.latest_start = NULL;
+    graph.earliest_start = (double*)malloc(graph.numberVertices*sizeof(double));
+    graph.latest_start = (double*)malloc(graph.numberVertices*sizeof(double));
 
     for (i=0; i <graph.numberVertices;i++){
         graph.xCoordinates[i] = (double)rand()/RAND_MAX;

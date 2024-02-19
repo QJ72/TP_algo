@@ -1,0 +1,27 @@
+Code topological_sort avec une complexité trop élevée
+
+int i;
+    int j; 
+    int c = 0;
+    Stack* s = createStack();
+    for (i=0;i<graph.numberVertices;i++){
+        if (graph.parents[i] == -1){
+            graphDFS(graph,i);
+        }
+    }
+    for (i=0;i<graph.numberVertices;i++){
+        if (i == graph.parents[i]){
+            push(s,i);
+        }
+        while (isStackEmpty(*s) == 0){
+            int temp = pop(s);
+            graph.topological_ordering[c] = temp;
+            c += 1;
+            for (j=0;j<graph.numberVertices;j++){
+                if ((graph.parents[j] == temp)&&(j != temp)){
+                    push(s,j);
+                }
+            }
+        }
+    }
+    return;
