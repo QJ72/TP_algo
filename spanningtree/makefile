@@ -19,7 +19,7 @@ $(EXEC): $(OBJ)
 prim.o: prim.h
 
 %.o: %.c
-	$(CC) -o $@ -c $< $(CFLAGS)
+	$(CC) -g -o $@ -c $< $(CFLAGS)
 
 .PHONY: clean
 

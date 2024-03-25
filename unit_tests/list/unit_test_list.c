@@ -309,13 +309,13 @@ int test_printList(){
     score+=compare_file_text(1,0,1,"[(0 key(s),0)]");
 
     score+=test_printList_with_cells(1,1,1);
-    score+=compare_file_text(1,1,1,"[(NULL,0)]");
+    score+=compare_file_text(1,1,1,"[((null),0)]");
 
     score+=test_printList_with_cells(5,0,1);
     score+=compare_file_text(5,0,1,"[(4 key(s),4),(3 key(s),3),(2 key(s),2),(1 key(s),1),(0 key(s),0)]");
 
     score+=test_printList_with_cells(5,1,1);
-    score+=compare_file_text(5,1,1,"[(NULL,4),(NULL,3),(NULL,2),(NULL,1),(NULL,0)]");
+    score+=compare_file_text(5,1,1,"[((null),4),((null),3),((null),2),((null),1),((null),0)]");
 
     printf("Summary: %d successful tests over 20 tests for printList().\n",score);
     return score;

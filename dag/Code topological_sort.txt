@@ -25,3 +25,23 @@ int i;
         }
     }
     return;
+
+    int c = graph.numberVertices-1;
+    void parcoursDFtopo(int n){
+        List list_current = n;
+        while (list_current != NULL){
+            if (graph.parents[list_current->value] == -1) {
+                graph.parents[liste_current->value] = n;
+                parcoursDFtopo(list_current->value);
+            }
+        list_current = list_current->nextCell;
+        }
+        graph.topological_ordering[c] = n;
+        c+= -1;
+    return;
+    };
+    for (int i=0;i<graph.numberVertices;i++){
+        if (graph.parents[i] == -1){
+            parcoursDFtopo(i);
+        }
+    }

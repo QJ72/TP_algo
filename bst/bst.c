@@ -99,27 +99,9 @@ BinarySearchTree searchBST(BinarySearchTree tree, int value) {
  * @param tree Pointer to the root of the tree.
  * @return A pointer to the root of the modified tree.
  */
-BinarySearchTree deleteRootBST(BinarySearchTree tree) {
-	BinarySearchTree temp = NULL;
 
-	int perm[pow(2,heightBST(tree))-1];
-	
-	void recupBST(BinarySearchTree tree1, BinarySearchTree tree2){
-		
-	}
-	if (tree == NULL){
-		return NULL ;
-	} else {
-		if ((tree->leftBST==NULL)&&(tree->rightBST == NULL)){
-			freeBST(tree);
-			return NULL ;
-		}
-		else { 
-			if (heightBST(tree->leftBST)>=heightBST(tree->rightBST)){
-				temp = tree->
-			}
-	}
-    return NULL;
+BinarySearchTree deleteRootBST(BinarySearchTree tree) {
+	return NULL;
 }
 
 

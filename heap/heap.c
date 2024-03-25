@@ -29,15 +29,18 @@ void swap(Heap *h, int i, int j) {
 Heap* createHeap(int n) {
 	int i;
 	Heap* h = NULL;
+	if (n <= 0){ return NULL;}
 	h = (Heap*)malloc(sizeof(Heap));
 	h->n = n;
 	h->nbElements = 0 ;
 	h->position = NULL;
-	h->position = (int*)malloc(n*sizeof(int));
-	h->heap = NULL;
-	h->heap = (int*)malloc(n*sizeof(int));
 	h->priority = NULL;
-	h->priority = (double*)malloc(n*sizeof(double));
+	h->heap = NULL;
+	if (n !=0){
+		h->position = (int*)malloc(n*sizeof(int));
+		h->heap = (int*)malloc(n*sizeof(int));
+		h->priority = (double*)malloc(n*sizeof(double));
+	}
 	
 	for (i=0;i<n;i++){
 		*(h->position+i) = -1;
@@ -159,6 +162,18 @@ void modifyPriorityHeap(Heap *h, int element, double priority) {
     return;
 }
 
+int fallInTheHeap(Heap* h, int j){
+	if (j>h->nbElements){
+		return (j-1)/2;
+	}
+	if (h->priority[h->heap[j*2+1]]< h->priority[h->heap[j*2 +2]]){
+		swap(h,j,j*2+1);
+		return fallInTheHeap(h,2*j+1);
+	} else {
+		swap(h,j,j*2+2);
+		return fallInTheHeap(h,2*j+2);
+	}
+}
 
 /**
  * @brief Removes the element with the smallest priority (smallest value in the priority array) from the Heap data structure.
@@ -166,14 +181,12 @@ void modifyPriorityHeap(Heap *h, int element, double priority) {
  * @return The element with the smallest priority that was removed from the Heap data structure.
  */
 int removeElement(Heap *h) {
-	int res = h->heap[0];
-
-	swap(h,0,h->nbElements-1);
-	h->priority[h->heap[h->nbElements-1]] = -1 ;
-	h->position[h->heap[h->nbElements-1]] = -1 ;
-	h->heap[h->nbElements -1] = '?' ;
-	h->nbElements = h->nbElements-1;
-	modifyPriorityHeap(h,h->heap[0],h->priority[h->heap[0]]);
-
-    return res;
+	int res = getElement(*h);
+	modifyPriorityHeap(h,res,INFINITY);
+	h->priority[h->nbElements] = -1;
+	h->position[h->nbElements] = -1;
+	h->heap[h->nbElements] = '?'; 
+	h->nbElements += -1;
+	printHeap(*h);
+	return res;
 }

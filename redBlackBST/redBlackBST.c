@@ -17,7 +17,7 @@
 #include <time.h>
 
 #include "redBlackBST.h"
-
+#define MIN(i, j) (((i) < (j)) ? (i) : (j))
 
 
 
@@ -105,7 +105,6 @@ RedBlackBST rightRotationRedBlackBST(RedBlackBST tree, NodeRedBlackBST *node)
     return tree;
 }
 
-
 /**
  * @brief Balance the Red-Black BST after inserting (or crating) a red node.
  * @param tree Pointer to the root node of the Red-Black BST. Be careful, the root may change after balancing.
@@ -120,9 +119,48 @@ RedBlackBST rightRotationRedBlackBST(RedBlackBST tree, NodeRedBlackBST *node)
  */
 void balanceRedBlackBST(RedBlackBST *tree, NodeRedBlackBST *curr)
 {
+    if (curr->father == NULL){
+        curr->color = BLACK;
+    } else {
+        if (curr->father->color == BLACK){
+            return;
+        }
+    }
+    if ((curr->color == RED)&&(curr->father->color == RED)){
+        if (curr->father->father != NULL){
+            NodeRedBlackBST* uncle = curr->father->father->rightBST;
+            if (uncle->color == RED){
+                curr->father = BLACK;
+                uncle = BLACK;
+                curr->father->father->color = RED;
+                balanceRedBlackBST(tree,curr);
+            } else {
+                if (curr->father->rightBST != curr){
+                    rightRotationRedBlackBST((*tree), curr);
+                } else {
+                    leftRotationRedBlackBST((*tree), curr);
+                }
+            }
+        }
+    }
+
     return ;
 }
 
+RedBlackBST newNode(RedBlackBST father, int value){
+    RedBlackBST node = NULL;
+    node = (RedBlackBST)malloc(sizeof(RedBlackBST));
+    node->color = RED;
+    node->father = NULL;
+    if (father != NULL){
+    node->father = (RedBlackBST)malloc(sizeof(RedBlackBST));
+    node->father = father;
+    }
+    node->value = value;
+    node->leftBST = NULL;
+    node->rightBST = NULL;
+    return node;
+}
 
 /**
  * @brief Insert a node in the Red-Black BST.
@@ -133,6 +171,23 @@ void balanceRedBlackBST(RedBlackBST *tree, NodeRedBlackBST *curr)
  */
 void insertNodeRedBlackBST(RedBlackBST *tree, int value)
 {
+    RedBlackBST curr = *tree;
+    RedBlackBST prev = *tree;
+    if ((*tree) == NULL){
+        *tree = newNode(NULL,value);
+        return;
+    }
+    while (curr != NULL){
+        RedBlackBST prev = curr;
+        if ((*tree)->value <= value){
+            curr = curr->leftBST;
+        } else {
+
+            curr = curr->rightBST;
+        }
+    }
+    curr = newNode(prev, value);
+
     return;
 }
 
@@ -205,17 +260,35 @@ int blackHeightRedBlackBST(RedBlackBST tree) {
   return leftHeight;
 }
 
-
+int isGoodNode(NodeRedBlackBST curr){
+    if (heightRedBlackBST(curr.leftBST) == heightRedBlackBST(curr.rightBST)){
+        return 0;
+    }
+    if (curr.color == RED){
+        if ((curr.leftBST != NULL)&&(curr.leftBST->color == RED)){
+            return 0;
+        }
+        if ((curr.rightBST != NULL)&&(curr.rightBST->color == RED)){
+            return 0;
+        }
+    }
+    return 1;
+}
 
 /**
  * @brief Test if a Red-Black BST is a valid Red-Black BST.
  * @param tree Pointer to the root node of the Red-Black BST.
  * @return 1 if the Red-Black BST is a valid Red-Black BST, 0 otherwise.
  */
-int isRedBlackBST(RedBlackBST tree)
-{
-
-    return 0;
+int isRedBlackBST(RedBlackBST tree){
+    if (tree == NULL){
+        return 1;
+    }
+    if (isGoodNode(*tree)){
+        return MIN(isRedBlackBST(tree->rightBST),isRedBlackBST(tree->leftBST));
+    } else {
+        return 0;
+    }
 }
 
 

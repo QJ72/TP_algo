@@ -1,0 +1,84 @@
+==14495== Memcheck, a memory error detector
+==14495== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==14495== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==14495== Command: ./vg_exec largeHeap
+==14495== Parent PID: 14482
+==14495== 
+==14495== Invalid read of size 4
+==14495==    at 0x10BB3D: modifyPriorityHeap (heap.c:148)
+==14495==    by 0x10B0E8: test_largeHeap_results (unit_test_largeHeap.c:39)
+==14495==    by 0x10B408: main (vg_exec.c:38)
+==14495==  Address 0x4a9dfc0 is 0 bytes after a block of size 4,000 alloc'd
+==14495==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==14495==    by 0x10AF54: test_largeHeap_results (unit_test_largeHeap.c:17)
+==14495==    by 0x10B408: main (vg_exec.c:38)
+==14495== 
+==14495== Invalid read of size 4
+==14495==    at 0x10B464: swap (heap.c:15)
+==14495==    by 0x10BBBF: modifyPriorityHeap (heap.c:155)
+==14495==    by 0x10B0E8: test_largeHeap_results (unit_test_largeHeap.c:39)
+==14495==    by 0x10B408: main (vg_exec.c:38)
+==14495==  Address 0x4a9dfc0 is 0 bytes after a block of size 4,000 alloc'd
+==14495==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==14495==    by 0x10AF54: test_largeHeap_results (unit_test_largeHeap.c:17)
+==14495==    by 0x10B408: main (vg_exec.c:38)
+==14495== 
+==14495== Invalid write of size 4
+==14495==    at 0x10B47F: swap (heap.c:16)
+==14495==    by 0x10BBBF: modifyPriorityHeap (heap.c:155)
+==14495==    by 0x10B0E8: test_largeHeap_results (unit_test_largeHeap.c:39)
+==14495==    by 0x10B408: main (vg_exec.c:38)
+==14495==  Address 0x4a9dfc0 is 0 bytes after a block of size 4,000 alloc'd
+==14495==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==14495==    by 0x10AF54: test_largeHeap_results (unit_test_largeHeap.c:17)
+==14495==    by 0x10B408: main (vg_exec.c:38)
+==14495== 
+==14495== Invalid read of size 4
+==14495==    at 0x10B4C9: swap (heap.c:19)
+==14495==    by 0x10BBBF: modifyPriorityHeap (heap.c:155)
+==14495==    by 0x10B0E8: test_largeHeap_results (unit_test_largeHeap.c:39)
+==14495==    by 0x10B408: main (vg_exec.c:38)
+==14495==  Address 0x4a9dfc0 is 0 bytes after a block of size 4,000 alloc'd
+==14495==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==14495==    by 0x10AF54: test_largeHeap_results (unit_test_largeHeap.c:17)
+==14495==    by 0x10B408: main (vg_exec.c:38)
+==14495== 
+==14495== Invalid read of size 4
+==14495==    at 0x10B51C: swap (heap.c:20)
+==14495==    by 0x10BBBF: modifyPriorityHeap (heap.c:155)
+==14495==    by 0x10B0E8: test_largeHeap_results (unit_test_largeHeap.c:39)
+==14495==    by 0x10B408: main (vg_exec.c:38)
+==14495==  Address 0x4a9dfc0 is 0 bytes after a block of size 4,000 alloc'd
+==14495==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==14495==    by 0x10AF54: test_largeHeap_results (unit_test_largeHeap.c:17)
+==14495==    by 0x10B408: main (vg_exec.c:38)
+==14495== 
+==14495== 
+==14495== HEAP SUMMARY:
+==14495==     in use at exit: 16,000 bytes in 3 blocks
+==14495==   total heap usage: 4 allocs, 1 frees, 20,096 bytes allocated
+==14495== 
+==14495== 4,000 bytes in 1 blocks are definitely lost in loss record 1 of 3
+==14495==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==14495==    by 0x10AF3F: test_largeHeap_results (unit_test_largeHeap.c:16)
+==14495==    by 0x10B408: main (vg_exec.c:38)
+==14495== 
+==14495== 4,000 bytes in 1 blocks are definitely lost in loss record 2 of 3
+==14495==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==14495==    by 0x10AF54: test_largeHeap_results (unit_test_largeHeap.c:17)
+==14495==    by 0x10B408: main (vg_exec.c:38)
+==14495== 
+==14495== 8,000 bytes in 1 blocks are definitely lost in loss record 3 of 3
+==14495==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==14495==    by 0x10AF69: test_largeHeap_results (unit_test_largeHeap.c:18)
+==14495==    by 0x10B408: main (vg_exec.c:38)
+==14495== 
+==14495== LEAK SUMMARY:
+==14495==    definitely lost: 16,000 bytes in 3 blocks
+==14495==    indirectly lost: 0 bytes in 0 blocks
+==14495==      possibly lost: 0 bytes in 0 blocks
+==14495==    still reachable: 0 bytes in 0 blocks
+==14495==         suppressed: 0 bytes in 0 blocks
+==14495== 
+==14495== For lists of detected and suppressed errors, rerun with: -s
+==14495== ERROR SUMMARY: 8 errors from 8 contexts (suppressed: 0 from 0)

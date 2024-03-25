@@ -27,28 +27,34 @@ void testRBst(){
     RBinarySearchTree tree = createEmptyRBST();
     printf("Empty tree\n");
     prettyPrintRBST(tree,4);
+    printf("*************************\n");
     printf("add 1\n");
     tree = addToRBST(tree, 1);
     prettyPrintRBST(tree,4);
+    printf("*************************\n");
     printf("add 2\n");
     tree = addToRBST(tree, 2);
     prettyPrintRBST(tree,4);
+    printf("*************************\n");
     printf("add 3\n");
     tree = addToRBST(tree, 3);
     prettyPrintRBST(tree,4);
-    printf("add 4\n");
-    tree = addToRBST(tree, 4);
-    prettyPrintRBST(tree,4);
+    printf("*************************\n");
+    printf("add -1\n");
+    tree = addToRBST(tree, -1);
+    prettyPrintRBST(tree,-1);
+    printf("*************************\n");
     printf("add 5\n");
     tree = addToRBST(tree, 5);
-    prettyPrintRBST(tree,4);
+    prettyPrintRBST(tree,1);
+    printf("*************************\n");
     printf("add 6\n");
     tree = addToRBST(tree, 6);
-    prettyPrintRBST(tree,4);
+    prettyPrintRBST(tree,1);
+    printf("*************************\n");
     printf("add 7\n");
     tree = addToRBST(tree, 7);
-    prettyPrintRBST(tree,4);
-
+    prettyPrintRBST(tree,1);
     // Test searchRBST()
     printf("*************************\n");
     RBinarySearchTree searchResult = searchRBST(tree, 2);
@@ -74,10 +80,10 @@ void testRBst(){
     printf("\n");
 
     // Split the RBST according to the value 4
-    RBinarySearchTree inf, sup;
-    /*
+    RBinarySearchTree inf, sup ;
+    
     splitRBST(tree, 4, &inf, &sup);
-
+    
     printf("*************************\n");
     // Print the elements of the INF tree
     printf("Split tree with respect to 4:");
@@ -89,9 +95,8 @@ void testRBst(){
     prettyPrintRBST(sup,4);
     printf("\n");
     printf("*************************\n");
-    */
-
-    int permutation[]={0,1,2,3,4,5,6,7,8,9};
+    
+    int permutation[]={0,1,4,3,2,5,6,7,8,9};
     RBinarySearchTree tree2 = buildRBSTFromPermutation(permutation,10);
     printf("Buit with a permutation");
     prettyPrintRBST(tree2,4);
@@ -100,7 +105,6 @@ void testRBst(){
     freeRBST(inf);
     freeRBST(sup);
     free(tree2);
-
 }
 
 
@@ -291,6 +295,6 @@ int main(void){
         srand(time(NULL));
         testRBst();
         compare_bst_rbst(1000, 1000);
-        //draw_graph_rbst(1000,10000,500,1000);
+        draw_graph_rbst(1000,10000,500,1000);
         return 0;
 }

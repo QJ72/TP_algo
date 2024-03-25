@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall
+CFLAGS=-Wall -g
 LDFLAGS=
 EXEC=testrbbst
 SRC= $(wildcard *.c) ../utils/utils.c ../bst/bst.c ../rBST/rbst.c

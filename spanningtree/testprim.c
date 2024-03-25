@@ -11,18 +11,18 @@ int main() {
     double sigma = 0.05;
     Graph graph = createGraph(0,n,sigma);
     // Print the graph to the console
-    //printConsoleGraph(graph);
+    printConsoleGraph(graph);
 
     // Draw the graph to a file
-    //drawGraph (graph, "graph.svg",0,0);
+    drawGraph (graph, "graph.svg",0,0);
 
     //initialization of the array parents
-    /*
+    
     for(int i = 0; i < n; i++ )
         graph.parents[i]=-1;
-    */
+    
     // Perform the minimal spanning tree from vertex 0
-    //Prim(graph, 0);
+    Prim(graph, 0);
 
     // Print the graph to the console
     //printConsoleGraph(graph);

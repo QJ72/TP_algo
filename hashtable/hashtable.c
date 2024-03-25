@@ -117,8 +117,12 @@ HashTable hashtableCreate(size_t sizeTable) {
 
     hashtable.sizeTable = sizeTable;
     hashtable.numberOfPairs = 0 ;
+    hashtable.table = NULL;
+    if (sizeTable ==0){
+        return hashtable;
+    }
     hashtable.table = (List*)malloc(sizeof(List)*sizeTable);
-    for (i=0; i<hashtable.sizeTable;i++){
+    for (i=0; i<(int)hashtable.sizeTable;i++){
         hashtable.table[i] = NULL;
     }
 
@@ -143,19 +147,16 @@ HashTable hashtableCreate(size_t sizeTable) {
  * a pointer on the hash table.
  */
 void hashtableInsertWithoutResizing(HashTable *hashtable, string key, int value){
-    int c = murmurhash(key, sizeof(key),hashtable->sizeTable);
+    int c = murmurhash(key, strlen(key),hashtable->sizeTable);
 
-    if (hashtable->table[c] == NULL){
-        hashtable->table[c] = (List)malloc(sizeof(List));
-        hashtable->table[c]->value = value;
-        hashtable->table[c]->key = (char*)malloc(sizeof(key));
-        strcpy(hashtable->table[c]->key,key);
-        hashtable->numberOfPairs = hashtable->numberOfPairs+1;
-    } else{
-        if (strcmp(hashtable->table[c]->key,key) == 0 ){
-            hashtable->table[c]->value = value;
-        }
+    List current = findKeyInList(hashtable->table[c], key);
+    if (current != NULL) {
+        current->value = value;
+    } else {
+        hashtable->table[c] = addKeyValueInList(hashtable->table[c], key, value);
+        hashtable->numberOfPairs += 1;
     }
+    
     return;
 
 }
@@ -171,17 +172,15 @@ void hashtableInsertWithoutResizing(HashTable *hashtable, string key, int value)
  * @param hashtable hash table to free
  */
 void hashtableDestroy(HashTable *hashtable){
-    int i;
-    if (hashtable == NULL){
-        return;
+    for(int i =0; i<hashtable->sizeTable;i++){
+        if (hashtable->table[i] != NULL){
+            freeList(hashtable->table[i]);
+        }
     }
-
-    for (i=0;i<hashtable->numberOfPairs;i++){
-        free(hashtable->table[i]);
-    }
+    free(hashtable->table);
     hashtable->table = NULL;
+    hashtable->sizeTable = 0;
     hashtable->numberOfPairs = 0;
-    hashtable->sizeTable = 0 ;
     return;
 }
 
@@ -198,9 +197,11 @@ void hashtableDestroy(HashTable *hashtable){
 HashTable hashtableDoubleSize(HashTable hashtable) {
     int j;
     HashTable newHashtable = hashtableCreate(hashtable.sizeTable*2);
-    for (j =0;j<hashtable.sizeTable;j++){
-        if (hashtable.table[j]!= NULL){
-            hashtableInsertWithoutResizing(&newHashtable, hashtable.table[j]->key,hashtable.table[j]->value);
+    for (j =0;j<(int)hashtable.sizeTable;j++){
+        List current = hashtable.table[j];
+        while (current != NULL){
+            hashtableInsertWithoutResizing(&newHashtable, current->key,current->value);
+            current = current->nextCell;
         }
     }
 
@@ -225,11 +226,12 @@ HashTable hashtableDoubleSize(HashTable hashtable) {
  * Pay attention to the memory !
  */
 void hashtableInsert(HashTable *hashtable, string key,  int value){
-    if (hashtable->sizeTable == hashtable->numberOfPairs){
-        *hashtable = hashtableDoubleSize(*hashtable);
+    if (hashtable->numberOfPairs >= hashtable->sizeTable){
+        HashTable temp = hashtableDoubleSize(*hashtable);
+        hashtableDestroy(hashtable);
+        *hashtable = temp;
     }
-    hashtableInsertWithoutResizing(hashtable, key, value);
-    
+    hashtableInsertWithoutResizing(hashtable,key,value);
     return;
 }
 
@@ -240,10 +242,12 @@ void hashtableInsert(HashTable *hashtable, string key,  int value){
  * @return 1 if the key is in the table, 0 otherwise.
  */
 int hashtableHasKey(HashTable hashtable, string key){
-    if (hashtable.table[murmurhash(key, sizeof(key), hashtable.sizeTable)] != NULL){
-        return 1 ;
+    int c = murmurhash(key, strlen(key),hashtable.sizeTable);
+    List current = findKeyInList(hashtable.table[c],key);
+    if (current == NULL){
+        return 0;
     }
-    return 0;
+    return 1;
 }
 
 
@@ -256,8 +260,10 @@ int hashtableHasKey(HashTable hashtable, string key){
  * @note we will take into account the case where the key is not in the hash table in order to not prevent a seg fault
  */
 int hashtableGetValue(HashTable hashtable, string key){
-    if (hashtableHasKey(hashtable,key) == 1){
-        return hashtable.table[murmurhash(key, sizeof(key), hashtable.sizeTable)]->value;
+    int c = murmurhash(key, strlen(key),hashtable.sizeTable);
+    List current = findKeyInList(hashtable.table[c],key);
+    if (current != NULL){
+        return current->value;
     }
     return -1 ;
 }
@@ -271,16 +277,13 @@ int hashtableGetValue(HashTable hashtable, string key){
  * @param key the key of the pair to remove
  * @return 0 if the key was not in the hash table, 1 otherwise
  */
-int hashtableRemove(HashTable *hashtable, string key){
-    int c;
-
-    if (hashtableHasKey(*hashtable,key) == 1){
-        c = murmurhash(key, sizeof(key), hashtable->sizeTable);
-        freeList(hashtable->table[c]);
-        hashtable->table[c] = NULL;
-        return 1;
+int hashtableRemove(HashTable* hashtable, string key){
+    if (hashtableHasKey(*hashtable,key)==0){
+        return 0;
     }
-    return 0;
+    int c = murmurhash(key, strlen(key),hashtable->sizeTable);
+    hashtable->table[c] = delKeyInList(hashtable->table[c],key);
+    return 1;
 }
 
 
