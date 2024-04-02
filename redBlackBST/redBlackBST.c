@@ -29,27 +29,11 @@ RedBlackBST createEmptyRedBlackBST(){
     return NULL;
 }
 
-void freeAuxiliary(RedBlackBST tree){
-    if (tree == NULL){
-        return;
-    }
-    freeRedBlackBST(tree->leftBST);
-    freeRedBlackBST(tree->rightBST);
-    free(tree);
-    return;
-}
-
 /**
  * @brief Free the memory of a red-black binary search tree.
  * @param tree Pointer to the root of the tree.
  */
-void freeRedBlackBST(RedBlackBST tree){
-    freeAuxiliary(tree);
-    tree = NULL;
-    return ;
-}
 
-/* @deprecated
 void freeRedBlackBST(RedBlackBST tree){
     if (tree == NULL){
         return;
@@ -59,7 +43,6 @@ void freeRedBlackBST(RedBlackBST tree){
     free(tree);
     return;
 }
-*/
 
 /**
  * @brief Perform a left rotation on the Red-Black BST.
@@ -133,9 +116,23 @@ RedBlackBST rightRotationRedBlackBST(RedBlackBST tree, NodeRedBlackBST *node)
  *   - the uncle node is black and the current node is a right child (left rotation, see course)
  *   - the uncle node is black and the current node is a left child (right rotation, see course)
  */
+
+int getColorUncle(RedBlackBST* tree, NodeRedBlackBST* curr){
+    return;
+}
+
 void balanceRedBlackBST(RedBlackBST *tree, NodeRedBlackBST *curr)
 {
-
+    if (curr->father == NULL){
+        curr->color = BLACK;
+        return;
+    }
+    if (curr->father->color == BLACK){
+        return;
+    }
+    if ((curr->father->color == RED)){
+        
+    }
     return ;
 }
 
@@ -148,23 +145,36 @@ void balanceRedBlackBST(RedBlackBST *tree, NodeRedBlackBST *curr)
  */
 void insertNodeRedBlackBST(RedBlackBST *tree, int value)
 {
-    if ((*tree == NULL)){
-        (*tree) = (RedBlackBST)calloc(1,sizeof(NodeRedBlackBST));
-        (*tree)->value = value;
-        (*tree)->color = RED;
-        (*tree)->father = NULL;
-        (*tree)->leftBST = NULL;
-        (*tree)->rightBST = NULL;
+    RedBlackBST new_node = (NodeRedBlackBST*)malloc(sizeof(NodeRedBlackBST));
+    new_node->color = RED;
+    new_node->father = NULL;
+    new_node->leftBST = NULL;
+    new_node->rightBST = NULL;
+    new_node->value = value;
+
+    if ((*tree) == NULL){
+        new_node->color = BLACK;
+        (*tree) = new_node;
         return;
     }
-    if ((*tree)->value<value){
-        insertNodeRedBlackBST(&(*tree)->rightBST,value);
-        (*tree)->rightBST->father = (*tree);
-    } else {
-        insertNodeRedBlackBST(&(*tree)->leftBST,value);
-        (*tree)->leftBST->father = (*tree);
+    RedBlackBST y = NULL;
+    RedBlackBST x = (*tree);
+
+    while (x != NULL)
+    {
+        y = x;
+        if (new_node->value < x->value){
+            x = x->leftBST;
+        } else {
+            x = x->rightBST;
+        }
     }
-    //balanceRedBlackBST(tree,node);
+        new_node->father = y;
+        if (new_node->value > y->value){
+            y->rightBST = new_node;
+        } else {
+            y->leftBST = new_node;
+        }
     return;
 }
 
