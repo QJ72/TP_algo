@@ -28,7 +28,24 @@ void testRedBlackBST(){
   RedBlackBST tree = createEmptyRedBlackBST();
   printf("tree == NULL : %d\n",tree == NULL);
 
+  freeRedBlackBST(tree);
+
+  insertNodeRedBlackBST(&tree, 4);
+  prettyPrintRedBlackBST(tree,4);
+
+  freeRedBlackBST(tree);
+  tree = NULL;
+
+  prettyPrintRedBlackBST(tree,4);
+
+    insertNodeRedBlackBST(&tree, 6);
+    insertNodeRedBlackBST(&tree, 7);
+    
+    freeRedBlackBST(tree);
+    prettyPrintRedBlackBST(tree,4);
+
   // Test insertNodeRedBlackBST() and heightRedBlackBST()
+  /*
   int size=10;
   int values[size];
   uniformRandomPermutation(values,size);
@@ -49,9 +66,11 @@ void testRedBlackBST(){
   printf("isRedBlackBST(tree) == 1 : %d\n",isRedBlackBST(tree) == 1);
 
 
+    prettyPrintRedBlackBST(tree, 4);
   // Test freeRedBlackBST()
-  freeRedBlackBST(tree);
-
+  //freeRedBlackBST(tree);
+  prettyPrintRedBlackBST(tree,4);
+  */
 }
 
 
@@ -271,6 +290,6 @@ int main(void){
         srand(time(NULL));
         testRedBlackBST();
         //compare_data_structures(5000, 1000);
-        draw_graph_trees(1000,10000,500,1000);
+        //draw_graph_trees(1000,10000,500,1000);
         return 0;
 }
