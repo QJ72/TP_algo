@@ -52,7 +52,7 @@ BinarySearchTree addToBST(BinarySearchTree tree, int value) {
 		tree->leftBST = NULL;
 		tree->rightBST = NULL;
 	} else {
-		if (tree->value >= value){
+		if (tree->value > value){
 			tree->leftBST = addToBST(tree->leftBST, value);
 		} else { tree->rightBST = addToBST(tree->rightBST, value); }
 	}
@@ -66,8 +66,14 @@ BinarySearchTree addToBST(BinarySearchTree tree, int value) {
  * @return The height of the tree.
  */
 int heightBST(BinarySearchTree tree) {
-	if (tree == NULL){return 0 ;
-	} else { return (1 + MAX( heightBST(tree->leftBST),heightBST(tree->rightBST)));
+	if (tree == NULL){
+		return -1 ;
+	} else { 
+		if (heightBST(tree->leftBST) > heightBST(tree->rightBST)){
+			return (1 + heightBST(tree->leftBST));
+		} else {
+			return (1+heightBST(tree->rightBST));
+		}
 	}
 }
 
@@ -101,7 +107,7 @@ BinarySearchTree searchBST(BinarySearchTree tree, int value) {
  */
 
 BinarySearchTree deleteRootBST(BinarySearchTree tree) {
-	return NULL;
+	return deleteFromBST(tree,tree->value);
 }
 
 
@@ -112,6 +118,12 @@ BinarySearchTree deleteRootBST(BinarySearchTree tree) {
  * @return A pointer to the root of the modified tree.
  */
 BinarySearchTree deleteFromBST(BinarySearchTree tree, int value) {
+	BinarySearchTree nodeToDelete = searchBST(tree,value);
+	if (nodeToDelete == NULL){
+		return NULL;
+	}
+	if (heightBST(nodeToDelete->leftBST) <= heightBST(nodeToDelete->rightBST)){
+	}
     return NULL;
 }
 

@@ -269,8 +269,6 @@ void graphDFS(Graph graph, int vertex) {
             list_current = list_current->nextCell;
         }
     }
-
-
     return;
 }
 

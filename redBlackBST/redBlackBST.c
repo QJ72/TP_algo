@@ -118,11 +118,39 @@ RedBlackBST rightRotationRedBlackBST(RedBlackBST tree, NodeRedBlackBST *node)
  */
 
 int getColorUncle(RedBlackBST* tree, NodeRedBlackBST* curr){
-    return;
+    if (curr->father->father->leftBST == curr->father){
+        if (curr->father->father->rightBST == NULL){
+            return BLACK;
+        }
+        return curr->father->father->rightBST->color;
+    } else {
+        if (curr->father->father->leftBST == NULL){
+            return BLACK;
+        }
+        return curr->father->father->leftBST->color;
+    }
+}
+
+int isGGorDDorGDorDG(RedBlackBST* tree, NodeRedBlackBST* curr){
+    if (curr->father == curr->father->father->leftBST){
+        if (curr == curr->father->leftBST){
+            return 1;
+        } else {
+            return 3;
+        }
+    }
+    if (curr->father == curr->father->father->rightBST){
+        if(curr == curr->father->rightBST){
+            return 2;
+        } else {
+            return 4;
+        }
+    }
+    return 0;
 }
 
 void balanceRedBlackBST(RedBlackBST *tree, NodeRedBlackBST *curr)
-{
+{   
     if (curr->father == NULL){
         curr->color = BLACK;
         return;
@@ -130,7 +158,48 @@ void balanceRedBlackBST(RedBlackBST *tree, NodeRedBlackBST *curr)
     if (curr->father->color == BLACK){
         return;
     }
-    if ((curr->father->color == RED)){
+    if (curr->father->father == NULL){
+        balanceRedBlackBST(tree, curr->father);
+        return;
+    }
+    if ((curr->color == RED)&&(curr->father->color == RED)){
+        if (getColorUncle(tree,curr) == RED){
+            curr->father->color = BLACK;
+            if (curr->father->father->leftBST == curr->father){
+                curr->father->father->rightBST->color = BLACK;
+            } else {
+                curr->father->father->leftBST->color = BLACK;
+            }
+            curr->father->color = BLACK;
+            curr->father->father->color = RED;
+            balanceRedBlackBST(tree, curr->father->father);
+        } else {
+            int isGGorDDvalue = isGGorDDorGDorDG(tree,curr);
+            switch (isGGorDDvalue)
+            {
+            case 1 :
+                curr->father->father->color = RED;
+                curr->father->color = BLACK;
+                rightRotationRedBlackBST(*tree,curr->father);
+
+                break;
+            case 2 :
+                curr->father->father->color = RED;
+                curr->father->color = BLACK;
+                leftRotationRedBlackBST(*tree,curr->father);
+                break;
+            case 3 :
+                curr->color = BLACK;
+                leftRotationRedBlackBST(*tree,curr->father);
+                break;
+            case 4 :
+                curr->color = BLACK;
+                rightRotationRedBlackBST(*tree,curr->father);
+            default:
+                break;
+            }
+            balanceRedBlackBST(tree,curr);
+        }
         
     }
     return ;
@@ -175,6 +244,7 @@ void insertNodeRedBlackBST(RedBlackBST *tree, int value)
         } else {
             y->leftBST = new_node;
         }
+    balanceRedBlackBST(tree, new_node);
     return;
 }
 
@@ -222,7 +292,7 @@ RedBlackBST searchRedBlackBST(RedBlackBST tree, int value){
 * @param node Pointer to the root node of the tree.
 * @return The black height of the tree.
 *
-* It returns 1 plus the black height of the tree if the root is black or the black heiht with a red root.
+* It returns 1 plus the black height of the tree if the root is black or the black height with a red root.
 * It returns -1 if the black height of the left and right subtrees of the root are different
 * or equal to -1.
 *
@@ -247,21 +317,6 @@ int blackHeightRedBlackBST(RedBlackBST tree) {
   return leftHeight;
 }
 
-int isGoodNode(NodeRedBlackBST curr){
-    if (heightRedBlackBST(curr.leftBST) == heightRedBlackBST(curr.rightBST)){
-        return 0;
-    }
-    if (curr.color == RED){
-        if ((curr.leftBST != NULL)&&(curr.leftBST->color == RED)){
-            return 0;
-        }
-        if ((curr.rightBST != NULL)&&(curr.rightBST->color == RED)){
-            return 0;
-        }
-    }
-    return 1;
-}
-
 /**
  * @brief Test if a Red-Black BST is a valid Red-Black BST.
  * @param tree Pointer to the root node of the Red-Black BST.
@@ -271,11 +326,18 @@ int isRedBlackBST(RedBlackBST tree){
     if (tree == NULL){
         return 1;
     }
-    if (isGoodNode(*tree)){
-        return MIN(isRedBlackBST(tree->rightBST),isRedBlackBST(tree->leftBST));
-    } else {
-        return 0;
+    if (tree->color == RED){
+        if ((tree->leftBST != NULL)&&(tree->leftBST->color == RED)){
+            return 0;
+        }
+        if ((tree->rightBST != NULL)&&(tree->rightBST->color == RED)){
+            return 0;
+        }
+        if (heightRedBlackBST(tree) == -1){
+            return -1;
+        }
     }
+    return MIN(isRedBlackBST(tree->leftBST),isRedBlackBST(tree->rightBST));
 }
 
 

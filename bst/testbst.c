@@ -247,7 +247,7 @@ int main(void){
         srand(time(NULL));
         testBst();
         //uncomment when necessary
-        //compare_bst(1000,1000);
-        //draw_graph_bst(1000,20000,1000,1000);
+        compare_bst(100,100);
+        draw_graph_bst(100,1000,100,100);
         return 0;
 }

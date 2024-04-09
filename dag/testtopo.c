@@ -24,7 +24,7 @@ int main() {
     printConsoleGraph(graph);
     drawGraph(graph, "topo.svg",0,1);
     //topological ordering+earlyest dates
-  
+  /*
     computeEarliestStartDates(graph); /*
     printConsoleGraph(graph);
     drawGraph(graph, "dates.svg",0,2);

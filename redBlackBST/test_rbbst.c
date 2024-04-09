@@ -46,7 +46,7 @@ void testRedBlackBST(){
   printf("searchRedBlackBST(tree, %d) != NULL : %d\n",size+1,searchRedBlackBST(tree, size+1) != NULL);
 
   // Test isRedBlackBST()
-  printf("isRedBlackBST(tree) == 1 : %d\n",isRedBlackBST(tree) == 1);
+  printf("isRedBlackBST(tree) == 1 : %d\n",isRedBlackBST(tree));
 
   // Test freeRedBlackBST()
   freeRedBlackBST(tree);

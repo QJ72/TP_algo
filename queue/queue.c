@@ -36,10 +36,8 @@ int isQueueEmpty(Queue q) {
  * @param q The queue to print.
  */
 void queuePrint(Queue q) {
-    Cell* cellule ;
-    cellule = (Cell*)malloc(sizeof(Cell));
-    cellule = q.front;
-    printList(cellule, 0);
+
+    printList(q.front, 0);
     return;
 }
 
@@ -51,18 +49,19 @@ void queuePrint(Queue q) {
  * @param data The data to be added to the queue.
  */
 void enqueue(Queue* q, int data) {
-    Cell* cellule ;
-    cellule = (Cell*)malloc(sizeof(Cell));
+    Cell* cellule = (Cell*)calloc(1,sizeof(Cell));
+
     cellule->value = data;
     cellule->key = NULL;
     cellule->nextCell = NULL;
+
     if (isQueueEmpty(*q)){
         q->front = cellule;
         q->rear = cellule;
-    } else {
-        q->rear->nextCell = cellule;
-        q->rear = cellule;
+        return;
     }
+    q->rear->nextCell = cellule;
+    q->rear = cellule;    
     return;
 }
 
@@ -78,12 +77,11 @@ int dequeue(Queue* q) {
     }else{
         int a = q->front->value;
         if (q->front == q->rear){
+            freeList(q->front);
             q->front = NULL ;
             q->rear = NULL ;
         } else {
-            Cell* cellule;
-            cellule = (Cell*)malloc(sizeof(Cell));
-            cellule = q->front;
+            Cell* cellule = q->front;
             q->front = q->front->nextCell;
             free(cellule);
     }
