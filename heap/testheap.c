@@ -34,11 +34,11 @@ int main() {
     printf("Heap after modifying priority of element 4: ");
     printHeap(*heap);
 
-    
+    /*
     int removedElement = removeElement(heap);
     printf("Heap after removing element with lowest priority: ");
     printHeap(*heap);
     printf("Removed element: %d\n", removedElement);
-    
+    */
     return 0;
 }

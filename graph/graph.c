@@ -255,8 +255,8 @@ void drawGraph(Graph graph, char* filename, int type, int directed){
 
 void graphDFS(Graph graph, int vertex) {
     Stack* s = createStack();
-    //le sommet d'origine est son propre parent
-    graph.parents[vertex] = vertex;
+    
+    graph.parents[vertex] = -1;
     push(s, vertex);
     while (isStackEmpty(*s) == 0){
         int vertex_current = pop(s);
@@ -286,8 +286,8 @@ void graphDFS(Graph graph, int vertex) {
  */
 void graphBFS(Graph graph, int vertex){
     Queue* q = createQueue();
-    //le sommet d'origine est son propre parent
-    graph.parents[vertex] = vertex;
+
+    graph.parents[vertex] = -1;
     enqueue(q, vertex);
     while (isQueueEmpty(*q) == 0){
         int vertex_current = dequeue(q);

@@ -22,15 +22,13 @@ int main() {
     topologicalSort(graph);
   
     printConsoleGraph(graph);
-    drawGraph(graph, "topo.svg",0,1);
+    //drawGraph(graph, "topo.svg",0,1);
     //topological ordering+earlyest dates
   /*
-    computeEarliestStartDates(graph); /*
+    computeEarliestStartDates(graph);
     printConsoleGraph(graph);
     drawGraph(graph, "dates.svg",0,2);
-*\
     //topological ordering+earlyest dates+latest dates
-    /*
     computeLatestStartDates(graph);
     printConsoleGraph(graph);
     drawGraph(graph, "dates.svg",3,1);
