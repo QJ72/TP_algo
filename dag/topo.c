@@ -13,63 +13,37 @@
 #define MAX(i, j) (((i) > (j)) ? (i) : (j))
 #define MIN(i, j) (((i) < (j)) ? (i) : (j))
 
+double weight(Graph graph,int vertex1, int vertex2){
+    return distance(graph.xCoordinates[vertex1],graph.yCoordinates[vertex1],graph.xCoordinates[vertex2],graph.yCoordinates[vertex2]);
+}
+
+void DFS_Topo(Graph* graph,int vertex,int* counter){
+    graph->parents[vertex] = 0;
+    List voisins = graph->array[vertex];
+    List current = voisins;
+    while (current != NULL){
+        if (graph->parents[current->value] == -1){
+            DFS_Topo(graph,current->value,counter);
+        }
+        current = current->nextCell;
+    }
+    graph->topological_ordering[graph->numberVertices-1- *counter] = vertex;
+    *counter += 1;
+    return;
+}
+
 /**
  * @brief Function to perform a topological sort of a graph. Update the field topological_ordering of the graph.
  *
  * @param graph The graph to be sorted.
  */
 void topologicalSort(Graph graph){
-    numberOfComponents(graph);
     int counter = 0;
-    Stack* s = createStack();
-    for (int i =0; i< graph.numberVertices;i++){
-        if (graph.parents[i] == -1){
-            push(s, i);
-        }
-        graph.parents[i] = -1;
-    }
-
-    while (isStackEmpty(*s) == 0){
-        int vertex_current = pop(s);
-        graph.topological_ordering[counter] = vertex_current;
-        counter += 1;
-        List list_current = graph.array[vertex_current];
-        while (list_current != NULL){
-            if (graph.parents[list_current->value] == -1){
-                graph.parents[list_current->value] = vertex_current;
-                push(s, list_current->value);
-            }
-            list_current = list_current->nextCell;
-        } 
-    }
-
-    /*
-    numberOfComponents(graph);
-    int counter = 0;
-    Queue* q = createQueue();
-    for (int i =0; i< graph.numberVertices;i++){
-        if (graph.parents[i] == -1){
-            enqueue(q, i);
-        }
-        graph.parents[i] = -1;
-    }
-
-
-    while (isQueueEmpty(*q) == 0){
-        queuePrint(*q);
-        int vertex_current = dequeue(q);
-        graph.topological_ordering[counter] = vertex_current;
-        counter +=1;
-        List list_current = graph.array[vertex_current];
-        while (list_current != NULL){
-            if (graph.parents[list_current->value] == -1){
-                graph.parents[list_current->value] = vertex_current;
-                enqueue(q, list_current->value);
-            }
-            list_current = list_current->nextCell;
+    for (int i =0;i<graph.numberVertices;i++){
+        if (graph.parents[i] == -1){ 
+            DFS_Topo(&graph,i, &counter);
         }
     }
-    */
     return;
 }
 /**
@@ -80,7 +54,20 @@ void topologicalSort(Graph graph){
 */
 
 Stack pred(Graph graph,int n){
-    return NULL;
+    Stack* predStack = createStack();
+    if (n ==0){
+        return NULL;
+    }
+    for (int i =n;i>=0;i--){
+        List next_predecessors = graph.array[graph.topological_ordering[i]];
+        while (next_predecessors != NULL){
+            if (next_predecessors->value == graph.topological_ordering[n]){
+                push(predStack,graph.topological_ordering[i]);
+            }
+            next_predecessors = next_predecessors->nextCell;
+        }
+    }
+    return *predStack;
 }
 /**
  * @brief Function to compute the earliest start date of each vertex in a graph.
@@ -90,12 +77,33 @@ Stack pred(Graph graph,int n){
  */
 
 void computeEarliestStartDates(Graph graph) {
-    
+    for (int i = 0; i<graph.numberVertices;i++){
+        graph.earliest_start[i] = 0;
+    }
+
+    for (int vertexIndex = 0; vertexIndex<graph.numberVertices;vertexIndex++){
+        Stack predVertex = pred(graph, vertexIndex);
+        while (predVertex != NULL){
+            int sp = pop(&predVertex);
+            graph.earliest_start[graph.topological_ordering[vertexIndex]] = MAX(graph.earliest_start[sp] + weight(graph,graph.topological_ordering[vertexIndex],sp),graph.earliest_start[graph.topological_ordering[vertexIndex]]);
+        }
+    }
 }
 
 
 Stack suc(Graph graph,int n){
-    return NULL;
+    Stack* sucStack = createStack();
+    
+    List next_successessors = graph.array[graph.topological_ordering[n]];
+
+    if (next_successessors == NULL){
+        return NULL;
+    }
+    while (next_successessors != NULL){
+        push(sucStack,next_successessors->value);
+        next_successessors = next_successessors->nextCell;
+    }
+    return *sucStack;
 }
 
 /**
@@ -105,6 +113,23 @@ Stack suc(Graph graph,int n){
  * Updates the array containing the latest start date of each vertex in the graph structure.
  */
 void computeLatestStartDates(Graph graph) {
+    double latestStart = 0;
+    for (int i = 0; i < graph.numberVertices;i++){
+        latestStart = MAX(latestStart,graph.earliest_start[i]);
+    }
+
+    for (int j = 0; j < graph.numberVertices;j++){
+        graph.latest_start[j] = latestStart;
+    }
+
+    for (int vertexIndex = graph.numberVertices-1;vertexIndex >= 0; vertexIndex--){
+        Stack sucVertex = suc(graph,vertexIndex);
+        while (sucVertex != NULL){
+            int sp = pop(&sucVertex);
+            graph.latest_start[graph.topological_ordering[vertexIndex]] = MIN(graph.latest_start[sp] - weight(graph,graph.topological_ordering[vertexIndex],sp),graph.latest_start[graph.topological_ordering[vertexIndex]]);
+        }
+    }
+
     return;
 }
 

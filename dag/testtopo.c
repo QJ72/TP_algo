@@ -24,14 +24,23 @@ int main() {
     printConsoleGraph(graph);
     //drawGraph(graph, "topo.svg",0,1);
     //topological ordering+earlyest dates
-  /*
+  
     computeEarliestStartDates(graph);
     printConsoleGraph(graph);
     drawGraph(graph, "dates.svg",0,2);
+    for (int i=0; i< graph.numberVertices;i++){
+      printf("%f ", graph.earliest_start[i]);
+    }
+    printf("\n");
     //topological ordering+earlyest dates+latest dates
+    
     computeLatestStartDates(graph);
     printConsoleGraph(graph);
     drawGraph(graph, "dates.svg",3,1);
-    */
+    for (int i=0; i< graph.numberVertices;i++){
+      printf("%f ", graph.latest_start[i]);
+    }
+    printf("\n");
+    
     return 0;
 }
