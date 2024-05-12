@@ -3,6 +3,7 @@
 #include "../graph/graph.h"
 #include "prim.h"
 #include "time.h"
+#include "../heap/heap.h"
 
 int main() {
     srand(time(NULL));
@@ -26,9 +27,9 @@ int main() {
 
     // Print the graph to the console
     //printConsoleGraph(graph);
-    // Draw the graph and the spanning tree to files
+    //Draw the graph and the spanning tree to files
     //drawGraph(graph, "prim-graph-tree.svg",2,0);
-    //drawGraph(graph, "prim-tree.svg",1,0);
+   // drawGraph(graph, "prim-tree.svg",1,0);
 
 
     return 0;
