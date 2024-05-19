@@ -172,7 +172,7 @@ void balanceRedBlackBST(RedBlackBST *tree, NodeRedBlackBST *curr)
             }
             curr->father->color = BLACK;
             curr->father->father->color = RED;
-            balanceRedBlackBST(tree, curr->father->father);
+            balanceRedBlackBST(tree, curr->father);
         } else {
             int isGGorDDvalue = isGGorDDorGDorDG(tree,curr);
             switch (isGGorDDvalue)
@@ -201,6 +201,9 @@ void balanceRedBlackBST(RedBlackBST *tree, NodeRedBlackBST *curr)
             balanceRedBlackBST(tree,curr);
         }
         
+    }
+    if (blackHeightRedBlackBST(curr) == - 1){
+        balanceRedBlackBST(tree, curr);
     }
     return ;
 }
