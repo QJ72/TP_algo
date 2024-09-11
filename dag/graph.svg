@@ -9,82 +9,66 @@
 <path d="M0,0 L0,6 L9,3 z"/>
 </marker>
 </defs>
-<circle cx="116" cy="364" r="3" fill="blue" />
-<circle cx="563" cy="398" r="3" fill="blue" />
-<circle cx="171" cy="494" r="3" fill="blue" />
-<circle cx="511" cy="442" r="3" fill="blue" />
-<circle cx="181" cy="538" r="3" fill="blue" />
-<circle cx="614" cy="402" r="3" fill="blue" />
-<circle cx="647" cy="109" r="3" fill="blue" />
-<circle cx="153" cy="577" r="3" fill="blue" />
-<circle cx="648" cy="401" r="3" fill="blue" />
-<circle cx="578" cy="287" r="3" fill="blue" />
-<circle cx="275" cy="468" r="3" fill="blue" />
-<circle cx="241" cy="633" r="3" fill="blue" />
-<circle cx="550" cy="602" r="3" fill="blue" />
-<circle cx="130" cy="193" r="3" fill="blue" />
-<circle cx="125" cy="148" r="3" fill="blue" />
-<circle cx="116" cy="364" r="3" fill="blue" />
-<line x1="116" y1="364" x2="171" y2="494"
+<circle cx="230" cy="155" r="3" fill="blue" />
+<circle cx="186" cy="527" r="3" fill="blue" />
+<circle cx="165" cy="136" r="3" fill="blue" />
+<circle cx="388" cy="500" r="3" fill="blue" />
+<circle cx="190" cy="694" r="3" fill="blue" />
+<circle cx="686" cy="294" r="3" fill="blue" />
+<circle cx="455" cy="615" r="3" fill="blue" />
+<circle cx="331" cy="577" r="3" fill="blue" />
+<circle cx="259" cy="117" r="3" fill="blue" />
+<circle cx="526" cy="452" r="3" fill="blue" />
+<circle cx="126" cy="146" r="3" fill="blue" />
+<circle cx="483" cy="209" r="3" fill="blue" />
+<circle cx="102" cy="657" r="3" fill="blue" />
+<circle cx="547" cy="129" r="3" fill="blue" />
+<circle cx="153" cy="327" r="3" fill="blue" />
+<circle cx="230" cy="155" r="3" fill="blue" />
+<line x1="165" y1="136" x2="230" y2="155"
       style="stroke: darkgray;" marker-end="url(#arrow)" />
-<line x1="130" y1="193" x2="116" y2="364"
+<line x1="259" y1="117" x2="230" y2="155"
       style="stroke: darkgray;" marker-end="url(#arrow)" />
-<circle cx="563" cy="398" r="3" fill="blue" />
-<line x1="563" y1="398" x2="511" y2="442"
+<line x1="126" y1="146" x2="230" y2="155"
       style="stroke: darkgray;" marker-end="url(#arrow)" />
-<line x1="563" y1="398" x2="614" y2="402"
+<circle cx="186" cy="527" r="3" fill="blue" />
+<line x1="186" y1="527" x2="190" y2="694"
       style="stroke: darkgray;" marker-end="url(#arrow)" />
-<line x1="563" y1="398" x2="648" y2="401"
+<line x1="186" y1="527" x2="331" y2="577"
       style="stroke: darkgray;" marker-end="url(#arrow)" />
-<line x1="578" y1="287" x2="563" y2="398"
+<line x1="186" y1="527" x2="102" y2="657"
       style="stroke: darkgray;" marker-end="url(#arrow)" />
-<circle cx="171" cy="494" r="3" fill="blue" />
-<line x1="171" y1="494" x2="181" y2="538"
+<circle cx="165" cy="136" r="3" fill="blue" />
+<line x1="259" y1="117" x2="165" y2="136"
       style="stroke: darkgray;" marker-end="url(#arrow)" />
-<line x1="171" y1="494" x2="153" y2="577"
+<line x1="165" y1="136" x2="126" y2="146"
       style="stroke: darkgray;" marker-end="url(#arrow)" />
-<line x1="275" y1="468" x2="171" y2="494"
+<circle cx="388" cy="500" r="3" fill="blue" />
+<line x1="388" y1="500" x2="455" y2="615"
       style="stroke: darkgray;" marker-end="url(#arrow)" />
-<line x1="171" y1="494" x2="241" y2="633"
+<line x1="388" y1="500" x2="331" y2="577"
       style="stroke: darkgray;" marker-end="url(#arrow)" />
-<circle cx="511" cy="442" r="3" fill="blue" />
-<line x1="614" y1="402" x2="511" y2="442"
+<line x1="526" y1="452" x2="388" y2="500"
       style="stroke: darkgray;" marker-end="url(#arrow)" />
-<line x1="648" y1="401" x2="511" y2="442"
+<circle cx="190" cy="694" r="3" fill="blue" />
+<line x1="102" y1="657" x2="190" y2="694"
       style="stroke: darkgray;" marker-end="url(#arrow)" />
-<line x1="578" y1="287" x2="511" y2="442"
+<circle cx="686" cy="294" r="3" fill="blue" />
+<circle cx="455" cy="615" r="3" fill="blue" />
+<line x1="331" y1="577" x2="455" y2="615"
       style="stroke: darkgray;" marker-end="url(#arrow)" />
-<line x1="511" y1="442" x2="550" y2="602"
+<line x1="526" y1="452" x2="455" y2="615"
       style="stroke: darkgray;" marker-end="url(#arrow)" />
-<circle cx="181" cy="538" r="3" fill="blue" />
-<line x1="181" y1="538" x2="153" y2="577"
+<circle cx="331" cy="577" r="3" fill="blue" />
+<circle cx="259" cy="117" r="3" fill="blue" />
+<line x1="259" y1="117" x2="126" y2="146"
       style="stroke: darkgray;" marker-end="url(#arrow)" />
-<line x1="275" y1="468" x2="181" y2="538"
+<circle cx="526" cy="452" r="3" fill="blue" />
+<circle cx="126" cy="146" r="3" fill="blue" />
+<circle cx="483" cy="209" r="3" fill="blue" />
+<line x1="547" y1="129" x2="483" y2="209"
       style="stroke: darkgray;" marker-end="url(#arrow)" />
-<line x1="181" y1="538" x2="241" y2="633"
-      style="stroke: darkgray;" marker-end="url(#arrow)" />
-<circle cx="614" cy="402" r="3" fill="blue" />
-<line x1="648" y1="401" x2="614" y2="402"
-      style="stroke: darkgray;" marker-end="url(#arrow)" />
-<line x1="578" y1="287" x2="614" y2="402"
-      style="stroke: darkgray;" marker-end="url(#arrow)" />
-<circle cx="647" cy="109" r="3" fill="blue" />
-<circle cx="153" cy="577" r="3" fill="blue" />
-<line x1="275" y1="468" x2="153" y2="577"
-      style="stroke: darkgray;" marker-end="url(#arrow)" />
-<line x1="153" y1="577" x2="241" y2="633"
-      style="stroke: darkgray;" marker-end="url(#arrow)" />
-<circle cx="648" cy="401" r="3" fill="blue" />
-<line x1="578" y1="287" x2="648" y2="401"
-      style="stroke: darkgray;" marker-end="url(#arrow)" />
-<circle cx="578" cy="287" r="3" fill="blue" />
-<circle cx="275" cy="468" r="3" fill="blue" />
-<line x1="275" y1="468" x2="241" y2="633"
-      style="stroke: darkgray;" marker-end="url(#arrow)" />
-<circle cx="241" cy="633" r="3" fill="blue" />
-<circle cx="550" cy="602" r="3" fill="blue" />
-<circle cx="130" cy="193" r="3" fill="blue" />
-<line x1="125" y1="148" x2="130" y2="193"
-      style="stroke: darkgray;" marker-end="url(#arrow)" />
-<circle cx="125" cy="148" r="3" fill="blue" />
+<circle cx="102" cy="657" r="3" fill="blue" />
+<circle cx="547" cy="129" r="3" fill="blue" />
+<circle cx="153" cy="327" r="3" fill="blue" />
 </svg>

@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "heap.h"
-#define MIN(i, j) (((i) < (j)) ? (i) : (j))
-#include <math.h>
 
 /**
  * @brief Helper function to swap two elements in the heap.
@@ -20,6 +18,7 @@ void swap(Heap *h, int i, int j) {
     h->position[h->heap[j]] = temp;
 }
 
+
 /**
  * @brief Creates a new Heap data structure.
  * @param n The maximum number of elements that the heap can store.
@@ -27,57 +26,96 @@ void swap(Heap *h, int i, int j) {
  * The elements of the arrays position and priority are initialized to -1
  */
 Heap* createHeap(int n) {
-	int i;
-	Heap* h = NULL;
-	if (n <= 0){ return NULL;}
-	h = (Heap*)malloc(sizeof(Heap));
-	h->n = n;
-	h->nbElements = 0 ;
-	h->position = NULL;
-	h->priority = NULL;
-	h->heap = NULL;
-	if (n !=0){
-		h->position = (int*)malloc(n*sizeof(int));
-		h->heap = (int*)malloc(n*sizeof(int));
-		h->priority = (double*)malloc(n*sizeof(double));
-	}
-	
-	for (i=0;i<n;i++){
-		*(h->position+i) = -1;
-		*(h->heap+i) = '?';
-		*(h->priority+i) = -1;
-	}
-    return h ;
+
+    Heap* tas;
+    int i;
+    if(n<=0){
+        return NULL;
+    }
+    tas = (Heap *) malloc(sizeof(Heap));
+    tas -> n = n;
+    tas -> nbElements = 0;
+    tas -> position = (int *) calloc(n,sizeof(int));
+    tas -> heap = (int *) calloc(n,sizeof(int));
+    tas -> priority = (double *) calloc(n,sizeof(double));
+    for(i = 0; i < n; i++){
+        tas->heap[i]=-1;
+        tas->priority[i]=-1;
+        tas->position[i]=-1;
+    }
+    return tas;
+}
+
+double abs_double(double x){
+    if(x>=0.){
+        return x;
+    }
+    return ((-1.)*x);
+}
+
+int min(int a,int b){
+	return (a > b)?b:a;
 }
 
 /**
  * @brief Prints the elements in the Heap data structure.
  * @param h The Heap data structure to print.
  */
-
 void printHeap(Heap h) {
-	int i;
-
-	printf("\n");
-	printf("n: %d\n", h.n);
-	printf("nElements: %d\n", h.nbElements);
-	printf("Position : [");
-	for (i=0;i<h.n;i++){
-		printf("%d ",h.position[i]);
-	}
-	printf("] \n");
-	printf("Priority : [");
-	for (i=0;i<h.n;i++){
-			printf("%f ",h.priority[i]);
-	}
-	printf("] \n");
-	printf("Heap : [");
-	for (i=0;i<h.n;i++){
-		if (h.heap[i] != '?'){
-			printf("%d ",h.heap[i]);
-		}
-	}
-	printf("] \n");
+    int i;
+    if( h.position == NULL){
+	printf("n : %d\n", h.n);
+    	printf("nbElements : %d\n",h.nbElements);
+    	printf("Position : []\n");
+	printf("Priority : []\n");
+	printf("Heap : []\n");
+	return;
+    }
+    printf("n : %d\n",h.n);
+    printf("nbElements : %d\n",h.nbElements);
+    printf("Position : [");
+    for( i = 0; i<h.n; i++){
+        if( i != 0){
+            printf(",");
+        }
+        if(h.position[i] == -1){
+            printf("?");
+        }
+        else
+        {
+            printf("%d",h.position[i]);
+        }
+    }
+    printf("]\n");
+    printf("Priority : [");
+    for( i = 0; i<h.n; i++){
+        if( i != 0){
+            printf(",");
+        }
+        if(abs_double(h.priority[i] + 1.) < 10E-3){
+            printf("?");
+        }
+        else
+        {
+            printf("%f",h.priority[i]);
+        }
+        
+    }
+    printf("]\n");
+    printf("Heap : [");
+    for( i = 0; i<h.nbElements; i++){
+        if( i != 0){
+            printf(",");
+        }
+        if(abs_double(h.priority[h.heap[i]] + 1.) < 10E-3){
+            printf("?");
+        }
+        else
+        {
+            printf("%d",h.heap[i]);
+        }
+    }
+    printf("]\n");
     return;
 }
 
@@ -87,16 +125,38 @@ void printHeap(Heap h) {
  * @return The element with the smallest priority.
  */
 int getElement(Heap h) {
-	int i;
-	int min = h.priority[h.heap[0]];
-	int res = h.heap[0];
-	for (i=0;i<h.nbElements;i++){
-		if (min>h.priority[h.heap[i]]){
-			min = h.priority[h.heap[i]];
-			res = h.heap[i];
-		}
+    if(h.nbElements <= 0){
+        return -1;
+    }
+    return h.heap[0];
+}
+
+int conditionHeap(Heap tas,int i){
+    if(!i){
+        return 0;
+    }
+    if(i%2){
+        return (tas.priority [tas.heap[i]] > tas.priority [tas.heap [(i-1)/2]]);
+    }
+    return (tas.priority[tas.heap[i]]>tas.priority[tas.heap[i/2]]);
+}
+
+void freeHeapStruct(Heap h){
+	if (h.position != NULL){
+		free(h.position);
 	}
-    return res;
+	if (h.priority != NULL){
+		free(h.priority);
+	}
+	if (h.heap != NULL){
+		free(h.heap);
+	}
+
+}
+
+void freeHeap(Heap* h){
+	freeHeapStruct(*h);
+	free(h);
 }
 
 /**
@@ -105,20 +165,65 @@ int getElement(Heap h) {
  * @param element The element to insert.
  * @param priority The priority of the element to insert.
  */
-void insertHeap(Heap *h, int element, double priority) {
-	//insertion of element at the last position
-	int j = h->nbElements ;
-	h->heap[h->nbElements] = element;
-	h->position[element] = h->nbElements;
-	h->priority[element] = priority;
-	h->nbElements = h->nbElements+1 ;
-
-	//element go back up if parent has a lower priority
-	while (h->priority[h->heap[j]]< h->priority[h->heap[(j-1)/2]]){
-		swap(h,j,(j-1)/2);
-		j = (j-1)/2 ;
+void percolateDown(Heap *h,int element){
+	int i;
+	int posE;
+    int posI;
+	if(h == NULL){
+		return;
 	}
-	return;
+	posE = h->position[element];
+	posI = 2*(posE)+1;
+	if(posI > h->nbElements-1){
+		return;
+	}
+    i = h->heap[posI];
+	if(((h->priority[element]>h->priority[i]))){
+		if( posI+1 < h->nbElements){
+			if(h->priority[i]>h->priority[h->heap[posI+1]]) posI++;
+		}
+		swap(h,posE,posI);
+		percolateDown(h,element);
+	}else{
+        if( posI+1 < h->nbElements){
+			if((h->priority[element]>h->priority[h->heap[posI+1]])){
+                 posI++;
+                swap(h,posE,posI);
+		        percolateDown(h,element);
+            }
+	    }
+    }
+}
+void percolateUp(Heap *h,int element){
+	int posE;
+    int pere;
+	posE = h->position[element];
+	if(h == NULL){
+		return;
+	}
+	if(!posE){
+		return;
+	}
+    pere = h->heap[(posE-1)/2];
+	if(h->priority[element]<h->priority[pere]){
+		swap(h,posE,(posE-1)/2);
+		percolateDown(h,element);
+		percolateUp(h,element);
+	}
+}
+void insertHeap(Heap *h, int element, double priority) {
+    int i;
+    if (h->n == h->nbElements) {
+        printf("Le tas est rempli.\n");
+        return;
+    }
+    h->nbElements++;
+    i=h->nbElements-1;
+    h->position[element] = i;
+    h->priority [element] = priority; 
+    h->heap[i] = element; 
+    percolateUp(h,element);
+    return;
 }
 
 /**
@@ -127,53 +232,19 @@ void insertHeap(Heap *h, int element, double priority) {
  * @param element The element whose priority is to be modified.
  * @param priority The new priority of the element.
  */
-void modifyPriorityHeap(Heap *h, int element, double priority) {
-	int j = h->position[element];
-	h->priority[element] = priority ;
-	
-	//case parent has smaller priority
-	if (j != 0 ){
-		while (h->priority[h->heap[j]]< h->priority[h->heap[(j-1)/2]]){
-			swap(h,j,(j-1)/2);
-			j = (j-1)/2 ;
-		}
-	}
 
-	//case no children
-	if ((2*j+1) >= h->nbElements){
-				return;
-	}
-	//case children have higher priority
-	while ((h->priority[h->heap[j]]> h->priority[h->heap[j*2+1]])|| (h->priority[h->heap[j]]> h->priority[h->heap[j*2 +2]])){
-		if (h->priority[h->heap[j*2+1]]< h->priority[h->heap[j*2 +2]]){
-			swap(h,j,2*j+1);
-			j = 2*j+1;
-			if (((2*j+1)>= h->nbElements)||((2*j+2)>= h->nbElements)){
-				return;
-			}
-		} else {
-			swap(h,j,2*j+2);
-			j = 2*j+2;
-			if (((2*j+1)>= h->nbElements)||((2*j+2)>= h->nbElements)){
-				return;
-			}
-		}
-	}
+
+
+void modifyPriorityHeap(Heap *h, int element, double priority) {
+    if(h->position[element]==-1){
+        return;
+    }
+	h->priority[element] = priority;
+	percolateUp(h,element);
+	percolateDown(h,element);
     return;
 }
 
-int fallInTheHeap(Heap* h, int j){
-	if (j>h->nbElements){
-		return (j-1)/2;
-	}
-	if (h->priority[h->heap[j*2+1]]< h->priority[h->heap[j*2 +2]]){
-		swap(h,j,j*2+1);
-		return fallInTheHeap(h,2*j+1);
-	} else {
-		swap(h,j,j*2+2);
-		return fallInTheHeap(h,2*j+2);
-	}
-}
 
 /**
  * @brief Removes the element with the smallest priority (smallest value in the priority array) from the Heap data structure.
@@ -181,12 +252,26 @@ int fallInTheHeap(Heap* h, int j){
  * @return The element with the smallest priority that was removed from the Heap data structure.
  */
 int removeElement(Heap *h) {
-	int res = getElement(*h);
-	modifyPriorityHeap(h,res,INFINITY);
-	h->priority[h->nbElements] = -1;
-	h->position[h->nbElements] = -1;
-	h->heap[h->nbElements] = '?'; 
-	h->nbElements += -1;
-	printHeap(*h);
-	return res;
+	int res;
+    int switchValue;
+	if(h->nbElements == 0){
+		return -1;
+	}
+    res = getElement(*h);
+	if(h->nbElements == 1){
+        h->position[res]=-1;
+        h->priority[res]=-1;
+		h->nbElements--;
+		return res;
+	}
+    switchValue = h->heap[h->nbElements-1];
+	swap(h,0,h->position[switchValue]);
+    h->position[res]=-1;
+    h->priority[res]=-1;
+    h->nbElements--;
+    percolateDown(h,switchValue);
+    percolateUp(h,switchValue);
+    return res;
 }
+
+

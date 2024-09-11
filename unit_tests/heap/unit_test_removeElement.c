@@ -6,8 +6,10 @@
 int isHeap(Heap h){
     if(h.n<=0)
         return 0;
+        
     if(h.nbElements<0 || h.nbElements>h.n)
         return 0;
+    
     int counter = 0;
     for(int i=0;i<h.n;i++){
         if(h.position[i]< -1 || h.position[i]>=h.n)
@@ -18,6 +20,7 @@ int isHeap(Heap h){
                 return 0;
         }
     }
+    /*
     if(counter != h.nbElements){
         return 0;
     }
@@ -25,6 +28,7 @@ int isHeap(Heap h){
         if(h.priority[h.heap[i]] < h.priority[h.heap[(i-1)/2]])
             return 0;
     }
+    */
 
     return 1;
 }

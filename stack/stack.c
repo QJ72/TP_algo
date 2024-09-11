@@ -28,7 +28,7 @@ Stack* createStack(){
  */
 void push(Stack* stack, int data) {
     if ((*stack)==NULL){
-        (*stack) = (Cell*)malloc(sizeof(Cell));
+        *stack = (Stack)malloc(sizeof(Cell));
         (*stack)->key = NULL;
         (*stack)->value = data;
         (*stack)->nextCell = NULL;
@@ -53,7 +53,9 @@ void push(Stack* stack, int data) {
  */
 int pop(Stack* stack) {
     int data = (*stack)->value;
-    (*stack) = (*stack)->nextCell;
+    Cell* temp = *stack;
+    *stack = (*stack)->nextCell;
+    free(temp);
     return data;
 }
 

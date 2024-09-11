@@ -149,61 +149,109 @@ int isGGorDDorGDorDG(RedBlackBST* tree, NodeRedBlackBST* curr){
     return 0;
 }
 
+RedBlackBST searchRootRedBlackBST(RedBlackBST currentNode){
+    if (!currentNode){
+        return NULL;
+    }
+    if(!(currentNode->father)){
+        return currentNode;
+    }
+    return searchRootRedBlackBST(currentNode->father);
+}
+
 void balanceRedBlackBST(RedBlackBST *tree, NodeRedBlackBST *curr)
-{   
-    if (curr->father == NULL){
+{
+    RedBlackBST grandFather;
+    int currIsRight;
+    int fatherIsRight;
+    if(!(curr -> father)){
         curr->color = BLACK;
         return;
     }
-    if (curr->father->color == BLACK){
+    currIsRight = (curr == curr -> father -> rightBST);
+    if(!curr->father->color){
         return;
     }
-    if (curr->father->father == NULL){
-        balanceRedBlackBST(tree, curr->father);
-        return;
-    }
-    if ((curr->color == RED)&&(curr->father->color == RED)){
-        if (getColorUncle(tree,curr) == RED){
-            curr->father->color = BLACK;
-            if (curr->father->father->leftBST == curr->father){
-                curr->father->father->rightBST->color = BLACK;
-            } else {
-                curr->father->father->leftBST->color = BLACK;
-            }
-            curr->father->color = BLACK;
-            curr->father->father->color = RED;
-            balanceRedBlackBST(tree, curr->father);
-        } else {
-            int isGGorDDvalue = isGGorDDorGDorDG(tree,curr);
-            switch (isGGorDDvalue)
-            {
-            case 1 :
-                curr->father->father->color = RED;
-                curr->father->color = BLACK;
-                rightRotationRedBlackBST(*tree,curr->father);
-
-                break;
-            case 2 :
-                curr->father->father->color = RED;
-                curr->father->color = BLACK;
+    grandFather = curr -> father -> father;
+    if(!grandFather){
+        if ((curr -> father -> color)){
+            
+            if(currIsRight){
+                
                 leftRotationRedBlackBST(*tree,curr->father);
-                break;
-            case 3 :
                 curr->color = BLACK;
-                leftRotationRedBlackBST(*tree,curr->father);
-                break;
-            case 4 :
-                curr->color = BLACK;
-                rightRotationRedBlackBST(*tree,curr->father);
-            default:
-                break;
+                return;
             }
-            balanceRedBlackBST(tree,curr);
+            else{
+                rightRotationRedBlackBST(*tree,curr->father);
+                curr->color = BLACK;
+                return;
+            }
         }
-        
+        return;
     }
-    if (blackHeightRedBlackBST(curr) == - 1){
-        balanceRedBlackBST(tree, curr);
+    fatherIsRight = (curr -> father == grandFather -> rightBST );
+    if(currIsRight){
+        if(fatherIsRight){
+            if(grandFather->leftBST){
+                if(grandFather->leftBST->color){
+                    curr->father->color = BLACK;
+                    grandFather->leftBST->color = BLACK;
+                    grandFather->color = RED;
+                    balanceRedBlackBST(tree,grandFather);
+                    return;
+                }
+            }
+
+            leftRotationRedBlackBST(*tree,grandFather);
+            curr->father-> color = BLACK;
+            grandFather-> color = RED;
+            curr-> color = RED;
+        } else{
+            if(grandFather->rightBST){
+                if(grandFather->rightBST->color){
+                    curr->father->color = BLACK;
+                    grandFather->rightBST->color = BLACK;
+                    grandFather->color = RED;
+                    balanceRedBlackBST(tree,grandFather);
+                    return;
+                }
+            }
+            leftRotationRedBlackBST(*tree,curr->father);
+            (*tree) = searchRootRedBlackBST(*tree);
+            balanceRedBlackBST(tree,curr->leftBST);
+        }
+    }
+    else
+    {
+        if(fatherIsRight){
+            if(grandFather->leftBST){
+                if(grandFather->leftBST->color){
+                    curr->father->color = BLACK;
+                    grandFather->leftBST->color = BLACK;
+                    grandFather->color = RED;
+                    balanceRedBlackBST(tree,grandFather);
+                    return;
+                }
+            }
+            rightRotationRedBlackBST(*tree,curr->father);
+            (*tree) = searchRootRedBlackBST(*tree);
+            balanceRedBlackBST(tree,curr->rightBST);
+        }else{
+            if(grandFather->rightBST){
+                if(grandFather->rightBST->color){
+                    curr->father->color = BLACK;
+                    grandFather->rightBST->color = BLACK;
+                    grandFather->color = RED;
+                    //balanceRedBlackBST(tree,grandFather);
+                    return;
+                }
+            }
+            rightRotationRedBlackBST(*tree,grandFather);
+            curr->father-> color = BLACK;
+            grandFather-> color = RED;
+            curr-> color = RED;
+        }
     }
     return ;
 }
@@ -248,6 +296,9 @@ void insertNodeRedBlackBST(RedBlackBST *tree, int value)
             y->leftBST = new_node;
         }
     balanceRedBlackBST(tree, new_node);
+    if((*tree)->color){
+        ((*tree)->color) = BLACK;
+    }
     return;
 }
 
@@ -336,7 +387,7 @@ int isRedBlackBST(RedBlackBST tree){
         if ((tree->rightBST != NULL)&&(tree->rightBST->color == RED)){
             return 0;
         }
-        if (heightRedBlackBST(tree) == -1){
+        if (blackHeightRedBlackBST(tree) == -1){
             return -1;
         }
     }

@@ -112,18 +112,14 @@ void hashtablePrint(HashTable hashtable) {
  * @return an empty hash table with the convenient table size
  */
 HashTable hashtableCreate(size_t sizeTable) {
-    int i;
     HashTable hashtable;
-
     hashtable.sizeTable = sizeTable;
     hashtable.numberOfPairs = 0 ;
     hashtable.table = NULL;
-    if (sizeTable ==0){
-        return hashtable;
-    }
-    hashtable.table = (List*)malloc(sizeof(List)*sizeTable);
-    for (i=0; i<(int)hashtable.sizeTable;i++){
-        hashtable.table[i] = NULL;
+    if (sizeTable >0){
+        hashtable.table = calloc(sizeTable, sizeof(List*));
+    } else {
+        hashtable.table = NULL;
     }
 
     return hashtable;
@@ -307,6 +303,7 @@ void countDistinctWordsInBook(){
     }
     printf("nombre de mots : %d \n", c);
     printf("nombre de mots distincts : %ld \n", hashtable.numberOfPairs);
+    hashtableDestroy(&hashtable);
 
     fclose(file);
 

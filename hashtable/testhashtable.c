@@ -35,6 +35,7 @@ void testCreateAndPrint(){
     HashTable table= hashtableCreate(4);
     hashtablePrint(table);
     printf("---- Fin Test create and print ----\n");
+    hashtableDestroy(&table);
 }
 
 
@@ -52,6 +53,7 @@ void testHashtableInsertWithoutResizing(){
         hashtablePrint(table);
     }
     printf("---- Fin test InsertWithoutResizing ----\n");
+    hashtableDestroy(&table);
 
 }
 
@@ -73,7 +75,7 @@ void testHashtableDestroy(){
     printf("After destroy:\n");
     hashtableDestroy(&table);
     hashtablePrint(table);
-    printf("---- Fin Test hashtableDestry ----\n");
+    printf("---- Fin Test hashtableDestroy ----\n");
 
 }
 
@@ -99,6 +101,8 @@ void testHashtableDoubleSize(){
     hashtablePrint(newTable);
 
     printf("---- Fin Test hashtableDoubleSize ----\n");
+    hashtableDestroy(&table);
+    hashtableDestroy(&newTable);
 
 }
 
@@ -116,6 +120,7 @@ void testHashtableInsert(){
     }
 
     printf("---- Fin Test hashtableInsert ----\n");
+    hashtableDestroy(&table);
 
 }
 
@@ -142,6 +147,7 @@ void testHashtableHasKey(){
     }
 
     printf("---- Fin Test hashtableHasKey ----\n");
+    hashtableDestroy(&table);
 
 }
 
@@ -164,6 +170,7 @@ void testHashtableGetValue(){
     }
 
     printf("---- Fin Test hashtableGetValue ----\n");
+    hashtableDestroy(&table);
 
 }
 
@@ -194,6 +201,7 @@ void testHashtableRemove(){
     }
 
     printf("---- Fin Test hashtableRemove ----\n");
+    hashtableDestroy(&table);
 
 }
 

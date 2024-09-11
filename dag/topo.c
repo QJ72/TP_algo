@@ -53,9 +53,11 @@ void topologicalSort(Graph graph){
  * @param n indice of the element in topological_order
 */
 
-Stack pred(Graph graph,int n){
+Stack* pred(Graph graph,int n){
     Stack* predStack = createStack();
     if (n ==0){
+        freeList(*predStack);
+        free(predStack);
         return NULL;
     }
     for (int i =n;i>=0;i--){
@@ -67,7 +69,7 @@ Stack pred(Graph graph,int n){
             next_predecessors = next_predecessors->nextCell;
         }
     }
-    return *predStack;
+    return predStack;
 }
 /**
  * @brief Function to compute the earliest start date of each vertex in a graph.
@@ -80,30 +82,35 @@ void computeEarliestStartDates(Graph graph) {
     for (int i = 0; i<graph.numberVertices;i++){
         graph.earliest_start[i] = 0;
     }
-
+    Stack* predVertex;
     for (int vertexIndex = 0; vertexIndex<graph.numberVertices;vertexIndex++){
-        Stack predVertex = pred(graph, vertexIndex);
-        while (predVertex != NULL){
-            int sp = pop(&predVertex);
-            graph.earliest_start[graph.topological_ordering[vertexIndex]] = MAX(graph.earliest_start[sp] + weight(graph,graph.topological_ordering[vertexIndex],sp),graph.earliest_start[graph.topological_ordering[vertexIndex]]);
+        predVertex = pred(graph, vertexIndex);
+        if (predVertex != NULL){
+            while (*predVertex != NULL){
+                int sp = pop(predVertex);
+                graph.earliest_start[graph.topological_ordering[vertexIndex]] = MAX(graph.earliest_start[sp] + weight(graph,graph.topological_ordering[vertexIndex],sp),graph.earliest_start[graph.topological_ordering[vertexIndex]]);
+            }
+            free(predVertex);
         }
     }
 }
 
 
-Stack suc(Graph graph,int n){
+Stack* suc(Graph graph,int n){
     Stack* sucStack = createStack();
     
     List next_successessors = graph.array[graph.topological_ordering[n]];
 
     if (next_successessors == NULL){
+        freeList(*sucStack);
+        free(sucStack);
         return NULL;
     }
     while (next_successessors != NULL){
         push(sucStack,next_successessors->value);
         next_successessors = next_successessors->nextCell;
     }
-    return *sucStack;
+    return sucStack;
 }
 
 /**
@@ -121,15 +128,18 @@ void computeLatestStartDates(Graph graph) {
     for (int j = 0; j < graph.numberVertices;j++){
         graph.latest_start[j] = latestStart;
     }
+    Stack* sucVertex;
 
     for (int vertexIndex = graph.numberVertices-1;vertexIndex >= 0; vertexIndex--){
-        Stack sucVertex = suc(graph,vertexIndex);
-        while (sucVertex != NULL){
-            int sp = pop(&sucVertex);
-            graph.latest_start[graph.topological_ordering[vertexIndex]] = MIN(graph.latest_start[sp] - weight(graph,graph.topological_ordering[vertexIndex],sp),graph.latest_start[graph.topological_ordering[vertexIndex]]);
+        sucVertex = suc(graph,vertexIndex);
+        if (sucVertex != NULL){
+            while (*sucVertex != NULL){
+                int sp = pop(sucVertex);
+                graph.latest_start[graph.topological_ordering[vertexIndex]] = MIN(graph.latest_start[sp] - weight(graph,graph.topological_ordering[vertexIndex],sp),graph.latest_start[graph.topological_ordering[vertexIndex]]);
+            }
+            free(sucVertex);
         }
     }
-
     return;
 }
 

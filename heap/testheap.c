@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "heap.h"
 
 int main() {
@@ -34,11 +35,15 @@ int main() {
     printf("Heap after modifying priority of element 4: ");
     printHeap(*heap);
 
-    /*
+    
     int removedElement = removeElement(heap);
     printf("Heap after removing element with lowest priority: ");
     printHeap(*heap);
     printf("Removed element: %d\n", removedElement);
-    */
+
+    free(heap->position);
+    free(heap->priority);
+    free(heap->heap);
+    free(heap);
     return 0;
 }

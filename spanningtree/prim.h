@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "../graph/graph.h"
+#include "../heap/heap.h"
 
 /**
  * @brief Function that computes a minimum spanning tree of graph g of the connex component of the vertex s

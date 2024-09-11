@@ -66,15 +66,13 @@ BinarySearchTree addToBST(BinarySearchTree tree, int value) {
  * @return The height of the tree.
  */
 int heightBST(BinarySearchTree tree) {
-	if (tree == NULL){
-		return -1 ;
-	} else { 
-		if (heightBST(tree->leftBST) > heightBST(tree->rightBST)){
-			return (1 + heightBST(tree->leftBST));
-		} else {
-			return (1+heightBST(tree->rightBST));
-		}
-	}
+    if (tree == NULL) {
+        return -1; 
+    }
+    int leftHeight = heightBST(tree->leftBST);
+    int rightHeight = heightBST(tree->rightBST);
+
+    return (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
 }
 
 
@@ -85,18 +83,13 @@ int heightBST(BinarySearchTree tree) {
  * @return A pointer to the node containing the value, or NULL if the value is not in the tree.
  */
 BinarySearchTree searchBST(BinarySearchTree tree, int value) {
-	if (tree == NULL){
-		return NULL ;
-	} else {
-		if (tree->value == value){
-			return tree;
-		} else {
-			if (tree->value > value){ return searchBST(tree->leftBST, value);
-			} else { return searchBST(tree->rightBST, value);
-			}
-		}
-	}
-	return NULL;
+    if (tree == NULL || tree->value == value) {
+        return tree;
+    }
+    if (value < tree->value) {
+        return searchBST(tree->leftBST, value);
+    }
+    return searchBST(tree->rightBST, value);
 }
 
 

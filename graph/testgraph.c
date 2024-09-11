@@ -44,6 +44,17 @@ int main() {
     drawGraph(graph, "components-graph-tree.svg",2,0);
     drawGraph(graph, "components-tree.svg",1,0);
     
+    for(int i =0; i<graph.numberVertices;i++){
+        freeList(graph.array[i]);
+    }
+
+    free(graph.array);
+    free(graph.earliest_start);
+    free(graph.latest_start);
+    free(graph.parents);
+    free(graph.topological_ordering);
+    free(graph.xCoordinates);
+    free(graph.yCoordinates);
 
     return 0;
 }

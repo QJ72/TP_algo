@@ -269,7 +269,7 @@ void draw_graph_trees(int begin_size, int end_size, int step_size, int nbTests){
 int main(void){
         srand(time(NULL));
         testRedBlackBST();
-        //compare_data_structures(5000, 1000);
-        //draw_graph_trees(1000,10000,500,1000);
+        compare_data_structures(5000, 1000);
+        draw_graph_trees(1000,10000,500,1000);
         return 0;
 }

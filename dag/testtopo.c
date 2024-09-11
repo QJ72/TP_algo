@@ -28,6 +28,7 @@ int main() {
     computeEarliestStartDates(graph);
     printConsoleGraph(graph);
     drawGraph(graph, "dates.svg",0,2);
+    printf("earliest_start \n");
     for (int i=0; i< graph.numberVertices;i++){
       printf("%f ", graph.earliest_start[i]);
     }
@@ -37,10 +38,23 @@ int main() {
     computeLatestStartDates(graph);
     printConsoleGraph(graph);
     drawGraph(graph, "dates.svg",3,1);
+    printf("latest_start \n");
     for (int i=0; i< graph.numberVertices;i++){
       printf("%f ", graph.latest_start[i]);
     }
     printf("\n");
+
+    for(int i =0; i<graph.numberVertices;i++){
+        freeList(graph.array[i]);
+    }
+
+    free(graph.array);
+    free(graph.earliest_start);
+    free(graph.latest_start);
+    free(graph.parents);
+    free(graph.topological_ordering);
+    free(graph.xCoordinates);
+    free(graph.yCoordinates);
     
     return 0;
 }

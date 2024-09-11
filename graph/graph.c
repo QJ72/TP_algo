@@ -74,14 +74,11 @@ Graph createGraph(int directed, int numVertices, double sigma) {
     graph.numberVertices = numVertices;
     graph.array = NULL;
     graph.array = (List*)malloc(graph.numberVertices*sizeof(List));
-    graph.xCoordinates = NULL;
+
     graph.xCoordinates = (double*)malloc(graph.numberVertices*sizeof(double));
-    graph.yCoordinates = NULL;
     graph.yCoordinates = (double*)malloc(graph.numberVertices*sizeof(double));
     graph.sigma = sigma;
-    graph.parents = NULL;
     graph.parents = (int*)malloc(graph.numberVertices*sizeof(int));
-    graph.topological_ordering = NULL;
     graph.topological_ordering = (int*)malloc(graph.numberVertices*sizeof(int));
     graph.earliest_start = (double*)malloc(graph.numberVertices*sizeof(double));
     graph.latest_start = (double*)malloc(graph.numberVertices*sizeof(double));
@@ -269,6 +266,7 @@ void graphDFS(Graph graph, int vertex) {
             list_current = list_current->nextCell;
         }
     }
+    free(s);
     return;
 }
 
@@ -300,6 +298,7 @@ void graphBFS(Graph graph, int vertex){
             list_current = list_current->nextCell;
         }
     }
+    free(q);
     return;
 }
 
